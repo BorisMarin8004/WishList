@@ -1,6 +1,10 @@
 .idea
 
 backend/venv
+backend/.DS_Store
+backend/backend/__pycache__/
+backend/controller/__pycache__/
+backend/controller/migrations/__pycache__/
 
 
 # dependencies
