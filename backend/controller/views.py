@@ -12,7 +12,7 @@ class ReactView(APIView):
         # fire_base = FireBase.get_fire_base()
         # project_name = {"project_name": fire_base.db.child('project_name').get()}
         items = [{"name": item.name, "price": item.price} for item in Item.objects.all()]
-        return Response(items)
+        return Response(items[0])
 
     @staticmethod
     def post(request):
