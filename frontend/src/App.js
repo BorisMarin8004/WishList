@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 import {useEffect, useState} from "react";
 import axios from "axios";
 
 function App() {
-  const [itemData, setItemData] = useState("EmptyProjectName");
+  const [itemsData, setItemsData] = useState(null);
 
   useEffect(() => {
-    let data = null
-    axios.get('http://0.0.0.0:8000/').then(res => {
-      data = res.data
-      // console.log(data)
-      setItemData(data)
+    axios.get('http://0.0.0.0:8000/api/item/').then(res => {
+      setItemsData(res.data)
     })
   }, []);
 
+  if (itemsData === null) {
+    return <h2>Loading items...</h2>;
+  }
 
   return (
     <div className="App">
-      <h1>{itemData.name}, {itemData.price}</h1>
+      {itemsData.map(data => <h2>{data.name}</h2>)}
     </div>
   );
 }
