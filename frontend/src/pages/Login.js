@@ -1,6 +1,5 @@
 import AccountEntry from "../components/AccountEntry"
 import AccountHeader from "../components/AccountHeader"
-import { Link } from 'react-router-dom'
 
 function Login() {
     // TODO: rig this button
