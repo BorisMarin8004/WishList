@@ -25,8 +25,8 @@ const AccountEntryTop = ({ making, onClick }) => {
     }
     return (
         <form className='account-form' onSubmit={onSubmit}>
-            <div className='form-control'>
-                <label>Username</label>
+            <div className='form-control userNameEntry'>
+                <label className='userNameEntry-Text userNameEntry-Background'>Username</label>
                 <input
                     type='text'
                     placeholder='Enter Username'
@@ -34,8 +34,8 @@ const AccountEntryTop = ({ making, onClick }) => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div className='form-control'>
-                <label>Password</label>
+            <div className='form-control passwordEntry'>
+                <label className='passwordEntry-Text passwordEntry-Background'>Password</label>
                 <input
                     type='password'
                     placeholder='Enter Password'
@@ -43,7 +43,7 @@ const AccountEntryTop = ({ making, onClick }) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <input type='submit' value={making ? 'Create Account' : 'Log-In'} className='btn btn-block'/>
+            <input type='submit' value={making ? 'Create Account' : 'Log-In'} className='logInBtn logInBtn-Text logInBtn-Background'/>
         </form>
     )
 }

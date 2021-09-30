@@ -1,17 +1,25 @@
 import AccountEntry from "../components/AccountEntry"
 import AccountHeader from "../components/AccountHeader"
+import Login from './Login'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 function CreateAccount() {
     // TODO: rig this button
     // Go to Login page.
     const btnLoginClick = () => {
-        console.log('login button clicked')
+        ReactDOM.render(
+            <React.StrictMode>
+                <Login />
+            </React.StrictMode>,
+            document.getElementById('root')
+        )
     }
 
     // TODO: rig this button
     // Try to create account based on user-input info.
     const btnCreateAccountClick = () => {
-        console.log('createaccount button clicked')
+        
     }
 
     return (

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const AccountEntryBottom = ({ making, onClick }) => {
     return (
         <div>
-            <p>{making ? 'Already have an account?' : "Don't have an account?"}</p>
+            <p className='questionText'>{making ? 'Already have an account?' : "Don't have an account?"}</p>
             <Button text={making ? 'Log-In' : 'Create Account'} color='Orange' onClick={onClick}/>
         </div>
     )

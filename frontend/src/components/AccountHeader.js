@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
+//import '../css/Login.css'
 
 const AccountHeader = ({ text }) => {
     return (
-        <div>
-            <h1 className='accountHeader'>{text}</h1>
+        <div className='title'>
+            <h1 className='title-Text title-Background'>{text}</h1>
         </div>
     )
 }
