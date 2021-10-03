@@ -1,7 +1,6 @@
 import './App.css';
 import {useState} from "react";
 import axios from "axios";
-import data from "bootstrap/js/src/dom/data";
 
 const TEST_USERNAME = "admin"
 const TEST_PASSWORD = "admin"
@@ -29,20 +28,20 @@ function App() {
             "username": username,
             "password": password
         })
-        fetch(ROUTER.login, {
+        axios({
+            url: ROUTER.login,
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
+            data: {
                 "username": username,
                 "password": password
-            })
+            }
         }).then(
-            data => data.json()
-        ).then(
-            data => {
-                setToken(data.token)
+            res => {
+                console.log(res.data)
+                setToken(res.data.token)
             }
         ).catch(
             error => {
@@ -53,29 +52,20 @@ function App() {
 
     function getItems(){
         console.log(token)
-        axios.get(ROUTER.api.items, {
-            method: 'get',
+        axios({
+            url: ROUTER.api.items,
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${token}`
-            },
-            params: {
-                name: "testItem"
             }
         }).then(
             res => console.log(res.data)
+        ).catch(
+            error => {
+                console.log(error)
+            }
         )
-        // fetch(ROU TER.api.items, {
-        //     method: "GET",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         "Authorization": `Token ${token}`
-        //     }
-        // }).then(
-        //     data => data.json()
-        // ).then(
-        //     data => console.log(data)
-        // )
     }
 
     return (

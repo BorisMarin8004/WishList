@@ -83,11 +83,11 @@ class UserViewTest(TestCase, DAVTestTemplate):
     def setUpTestData(cls):
         DAVTestTemplate.setUpTestData(cls)
 
-    def test_get_wish_list(self):
+    def test_get_user(self):
         super()._test_get(self)
 
-    def test_add_wish_list(self):
+    def test_add_user(self):
         super()._test_add(self)
 
-    def test_delete_wish_list(self):
+    def test_delete_user(self):
         super()._test_delete(self)
