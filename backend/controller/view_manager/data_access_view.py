@@ -2,7 +2,6 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import FieldError
 from rest_framework import viewsets, mixins
-
 from .view_utils import *
 
 
@@ -41,10 +40,8 @@ class DataAccessView(mixins.CreateModelMixin,
         return {k: parse_query_param(v) for k, v in dict(self.request.query_params).items()}
 
     def get_models(self, *args, **kwargs):
-        print(self.request.user, self.request.user.is_authenticated)
         try:
             data = self.filter_models(**self.parse_query_params())
-            print(data)
             res = get_response(data, status=200)
         except (TypeError, FieldError, ValueError) as e:
             data = {"error": str(e)}
@@ -61,7 +58,6 @@ class DataAccessView(mixins.CreateModelMixin,
         return res
 
     def delete_models(self, *args, **kwargs):
-        print(self.request.user, self.request.user.is_authenticated)
         try:
             data = self.filter_models(**self.request.data)
             self.model.objects.filter(**self.request.data).delete()

@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
-from .view_managers import *
+from .view_manager import *
 from .serializer import *
 from .models import *
 
