@@ -20,7 +20,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-jd67-812eb7h^n@3r6$ak+jnvk)shj8b0fnjc1*you1r1^kf4*'
-CORS_ORIGIN_ALLOW_ALL = True
+
+ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
+]
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
+)
+
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']
 }
@@ -28,7 +45,9 @@ REST_FRAMEWORK = {
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+# ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['*']
+LOGIN_URL = '/login/'
 
 # Application definition
 
@@ -41,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'controller',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders'
 ]
 
@@ -87,6 +107,10 @@ DATABASES = {
         'PASSWORD': '84e601463364f7de04d0100339d0362e47754ce76cddd417d73c87535a44c78c',
         'HOST': 'ec2-52-86-25-51.compute-1.amazonaws.com',
         'PORT': '5432',
+        'TEST': {
+            'NAME': 'da6geq5vjieu5u',
+            'SERIALIZE': False,
+        },
     }
 }
 

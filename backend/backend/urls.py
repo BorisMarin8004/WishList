@@ -1,6 +1,6 @@
 """WishList URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` list view_managers URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
@@ -15,15 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 from controller.views import *
 
-router = routers.DefaultRouter()
-router.register(r'item', ItemsView, 'item')
-router.register(r'wish_list', WishListView, 'wish_list')
-router.register(r'user', UserView, 'user')
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('admin/', admin.site.urls, name="admin"),
+    path('login/', obtain_auth_token, name="login"),
+    path('sign_up/', signUpView, name="sign_up"),
+    path('api/', include([
+        path('item/', ItemsView.as_view(), name="item"),
+        path('wish_list/', WishListView.as_view(), name="wish_list"),
+        path('user/', UserView.as_view(), name="user")
+    ]))
 ]

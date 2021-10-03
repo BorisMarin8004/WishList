@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
+
 from .models import *
 
 
@@ -37,3 +39,8 @@ class UserSerializer(serializers.ModelSerializer):
             'password',
             'username'
         ]
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+        return user
