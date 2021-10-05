@@ -56,6 +56,7 @@ class DAVTestTemplate:
 
     @classmethod
     def _test_get(cls, test_instance):
+        cls.__add_response(test_instance)
         response = cls.__get_response(test_instance)
         test_instance.assertEqual(response.status_code, 200)
         test_instance.assertTrue(len(decode_content(response.content)) > 0)
@@ -68,9 +69,7 @@ class DAVTestTemplate:
 
     @classmethod
     def _test_delete(cls, test_instance):
-        response = cls.__add_response(test_instance)
-        test_instance.assertEqual(response.status_code, 200)
-        test_instance.assertEqual(decode_content(response.content)[cls.field_compare], cls.add_data[cls.field_compare])
+        cls.__add_response(test_instance)
         response = cls.__delete_response(test_instance)
         test_instance.assertEqual(response.status_code, 200)
         test_instance.assertEqual(decode_content(response.content)[0][cls.field_compare], cls.delete_data[cls.field_compare])
