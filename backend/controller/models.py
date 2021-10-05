@@ -19,3 +19,6 @@ class WishList(models.Model):
 
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='user_id')
     item_ids = models.TextField(default="", db_column='item_ids')
+    name = models.CharField(default="No Title", db_column='name', max_length=20)
+
+
