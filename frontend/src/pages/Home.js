@@ -23,11 +23,11 @@ function Home() {
                 <div>
                     <div>
                         <p>Found an item? Add it now so you don't forget later!</p>
-                        <Button text="Add an item" onClick="btnAddItemClick"/>
+                        <Button text="Add an item" onClick={btnAddItemClick}/>
                     </div>
                     <div>
                         <p>Already added all your items? See your wishlist here.</p>
-                        <Button text="View My Wishlist" onClick="btnWishlistClick"/>
+                        <Button text="View My Wishlist" onClick={btnWishlistClick}/>
                     </div>
                 </div>
             </div>

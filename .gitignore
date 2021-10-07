@@ -1,5 +1,6 @@
 .idea
 .DS_Store
+.vscode
 
 backend/venv
 backend/.DS_Store

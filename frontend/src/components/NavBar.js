@@ -21,14 +21,16 @@ const NavBar = () => {
     const btnLogoutClick = () => {
         console.log("logout button clicked.")
     }
+    
     return (
-        <div>
-            <button>Logo Placeholder</button>
-            <button>Wishlist Placeholder</button>
-            <button>Add Item Placeholder</button>
-            <button>Profile Placeholder</button>
-            <button>Logout Placeholder</button>
-        </div>
+        <nav class="nav_bar">
+            <ul>
+                <li><a href="/">My Wishlist</a></li>
+                <li><a href="/AddItem">Add Item </a></li>
+                <li><a href="/ViewProfile">View Profile</a></li>
+                <li><a href="/LogOut">Log Out</a></li>
+            </ul>
+        </nav>
     )
 }
 
