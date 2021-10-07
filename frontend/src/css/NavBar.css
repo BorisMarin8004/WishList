@@ -1,0 +1,19 @@
+.nav_bar {
+    margin: 0 auto;
+    background-color:rgb(172, 233, 157);
+    opacity: 0.9;
+    font-family: monospace;
+  }
+
+  .nav_bar a:link {
+    color:white;
+    text-decoration: none;
+  }
+
+  .nav_bar a:visited {
+    color:green;
+  }
+  
+  .nav_bar a:hover {
+    color:  rgb(252, 200, 176);;
+  }
