@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Login from './pages/Login';
+import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <Home />
   </React.StrictMode>,
   document.getElementById('root')
 );
