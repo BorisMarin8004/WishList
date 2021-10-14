@@ -5,7 +5,7 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
-import useToken from "./middleware/auth";
+import useToken from "./customHooks/auth";
 import Button from "./components/Button";
 
 export default function App() {
