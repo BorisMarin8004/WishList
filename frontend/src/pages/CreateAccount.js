@@ -1,12 +1,13 @@
-import AccountEntry from "../components/AccountEntry"
 import AccountHeader from "../components/AccountHeader"
-import Login from './Login'
+import AccountEntry from "../components/AccountEntry";
+import Login from '../pages/Login'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
-import {getSignUpConfig} from "../network/RequestTemples";
+import {getSignUpConfig} from "../network/RequestTemples"
 
-function CreateAccount() {
+
+export default function CreateAccount() {
     // TODO: rig this button
     // Go to Login page.
     const btnLoginClick = () => {
@@ -40,4 +41,3 @@ function CreateAccount() {
     )
 }
 
-export default CreateAccount

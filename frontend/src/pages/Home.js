@@ -1,9 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Button from '../components/Button'
-import NavBar from '../components/NavBar'
 
-function Home() {
+
+export default function Home() {
     //TODO: rig button when add item page is made.
     const btnAddItemClick = () => {
         console.log("add item clicked")
@@ -15,7 +14,6 @@ function Home() {
     }
     return (
         <div>
-            <NavBar />
             <h1>Have you been nice this year?</h1>
             <h4>Help Santa (and your friends and family) get you waht you really want this year with a wishlist.</h4>
             <div>
@@ -35,4 +33,3 @@ function Home() {
     )
 }
 
-export default Home
