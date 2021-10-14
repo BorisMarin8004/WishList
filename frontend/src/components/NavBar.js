@@ -1,7 +1,29 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import '../css/NavBar.css'
+
 const NavBar = () => {
+    const btnLogoClick = () => {
+        console.log("logo clicked.")
+    }
+
+    const btnWishlistClick = () => {
+        console.log("wishlist clicked.")
+    }
+
+    const btnAddItemClick = () => {
+        console.log("add item clicked.")
+    }
+
+    const btnProfileClick = () => {
+        console.log("profile clicked.")
+    }
+
+    const btnLogoutClick = () => {
+        console.log("logout button clicked.")
+    }
     
-    
-return (
+    return (
         <nav class="nav_bar">
             <ul>
                 <li><a href="/">My Wishlist</a></li>
