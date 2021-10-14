@@ -1,5 +1,5 @@
 body {
-    font-family: Montserrat;
+    font-family: Montserrat, serif;
     font-style: normal;
     font-weight: normal;
 }
@@ -13,7 +13,7 @@ body {
     color: #8EE167;
     background-color: white;
     border-radius: 14px;
-    box-shadow: 0px 4px 0px #8EE167;
+    box-shadow: 0 4px 0 #8EE167;
     width: 478px;
     height: 60px;
     font-size: 24px;

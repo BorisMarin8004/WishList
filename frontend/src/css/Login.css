@@ -4,13 +4,13 @@ body {
     justify-content: center;
     vertical-align: middle;
     margin: auto;
-    font-family: Montserrat;
+    font-family: Montserrat, serif;
 }
 
 .container {
     background-color: rgba(255, 192, 157, 0.41);
     padding: 40px;
-    box-shadow: 0px 4px 0px 4px #FFFFFF;
+    box-shadow: 0 4px 0 4px #FFFFFF;
     border-radius: 59px;
     position: fixed;
     right: 0;
