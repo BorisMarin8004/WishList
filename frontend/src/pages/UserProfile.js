@@ -1,7 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import Button from '../components/Button'
-function UserProfile() {
+export default function UserProfile() {
 
 
     return(
@@ -27,5 +25,5 @@ function UserProfile() {
 
     )
 }
-
-export default UserProfile
+// 
+// export default UserProfile
