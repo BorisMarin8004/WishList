@@ -1,16 +1,34 @@
-import { render, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
 import {getLoginConfig} from "./network/RequestTemples";
 import axios from "axios";
-import useToken from "./middleware/auth";
 
 const TEST_PARAMS = Object.freeze({
-    username: "admin",
-    password: "admin",
+    cred: {
+        username: "admin",
+        password: "admin"
+    },
+    PEI: {
+        homeElement: "Have you been nice this year?",
+        itemsElement: "Empty ManageItem",
+        viewProfileElement: "Empty UserProfile",
+        wishlistElement: "Empty ManageWishlist",
+        logoutElement: "Please Log In"
+    }
 })
 
 async function getTokenRequest(){
-    return (await axios(getLoginConfig({"username": TEST_PARAMS.username, "password": TEST_PARAMS.password}))).data.token;
+    return (await axios(getLoginConfig({"username": TEST_PARAMS.cred.username, "password": TEST_PARAMS.cred.password}))).data.token;
+}
+
+function getRouterElements(){
+    return Object.freeze({
+        homeElement: screen.getByText("Home"),
+        itemsElement: screen.getByText("Items"),
+        viewProfileElement: screen.getByText("View Profile"),
+        wishlistElement: screen.getByText("Wishlists"),
+        logoutElement: screen.getByText("Log Out")
+    })
 }
 
 test("Token", () => {
@@ -31,15 +49,19 @@ test("Login", () => {
     expect(elementBeforeLogin).toBeInTheDocument();
     localStorage.setItem('token', JSON.stringify(getTokenRequest()))
     render(<App />);
-    const homeElement = screen.getByText("Home")
-    const itemsElement = screen.getByText("Items")
-    const viewProfileElement = screen.getByText("View Profile")
-    const wishlistElement = screen.getByText("Wishlists")
-    const logoutElement = screen.getByText("Log Out")
-    expect(homeElement).toBeInTheDocument();
-    expect(itemsElement).toBeInTheDocument();
-    expect(viewProfileElement).toBeInTheDocument();
-    expect(wishlistElement).toBeInTheDocument();
-    expect(logoutElement).toBeInTheDocument();
+    const routerElements = getRouterElements()
+    for (let element in routerElements){
+        expect(routerElements[element]).toBeInTheDocument();
+    }
 });
+
+test("Routing", () => {
+    localStorage.setItem('token', JSON.stringify(getTokenRequest()))
+    render(<App />);
+    const routerElements = getRouterElements()
+    for (let element in routerElements){
+        fireEvent.click(routerElements[element])
+        expect(screen.getByText(TEST_PARAMS.PEI[element])).toBeInTheDocument()
+    }
+})
 

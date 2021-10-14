@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
 import useToken from "./middleware/auth";
-import Logout from "./pages/Logout";
+import Button from "./components/Button";
 
 export default function App() {
 
@@ -22,25 +22,36 @@ export default function App() {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/home">Home</Link>
+                            <Link to="/home">
+                                <Button text="Home" color="green" onClick={() => console.log("Home clicked")}/>
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/item">Items</Link>
+                            <Link to="/item">
+                                <Button text="Items" color="green" onClick={() => console.log("Items clicked")}/>
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/user-profile">View Profile</Link>
+                            <Link to="/user-profile">
+                                <Button text="View Profile" color="green" onClick={() => console.log("View Profile clicked")}/>
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/wishlist">Wishlists</Link>
+                            <Link to="/wishlist">
+                                <Button text="Wishlists" color="green" onClick={() => console.log("Wishlists clicked")}/>
+                            </Link>
                         </li>
                         <li>
-                            <Link to="/log-out">Log Out</Link>
+                            <Button text="Log Out" color="green" onClick={() => {
+                                console.log("Dropping token")
+                                setToken(null)
+                            }}/>
                         </li>
                     </ul>
                 </nav>
 
                 <Switch>
-                    <Route path="/home">
+                    <Route exact path={["/home", "/"]}>
                         <Home />
                     </Route>
                     <Route path="/item">
@@ -51,9 +62,6 @@ export default function App() {
                     </Route>
                     <Route path="/wishlist">
                         <ManageWishlist />
-                    </Route>
-                    <Route path="/log-out">
-                        <Logout  setToken={ setToken }/>
                     </Route>
                 </Switch>
             </div>
