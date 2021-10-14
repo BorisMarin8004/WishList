@@ -1,0 +1,12 @@
+h1 {
+    font-family: Montserrat, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    text-align: center;
+    background: #8EE167;
+    border-radius: 48px;
+    padding: 4px 60px;
+
+    color: #FFFFFF;
+}
