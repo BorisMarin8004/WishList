@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-//import '../css/Login.css'
+import '../css/AccountHeader.css'
 
 const AccountHeader = ({ text }) => {
     return (
-        <div className='title'>
-            <h1 className='title-Text title-Background'>{text}</h1>
+        <div className="title">
+            <h1>{text}</h1>
         </div>
     )
 }

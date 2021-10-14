@@ -1,11 +1,13 @@
 import AccountEntry from "../components/AccountEntry"
 import AccountHeader from "../components/AccountHeader"
-//import '../css/Login.css'
+import '../css/Login.css'
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import CreateAccount from "./CreateAccount"
+import Home from "./Home"
 import axios from "axios";
 import { getLoginConfig } from "../network/RequestTemples";
+import NavBar from '../components/NavBar'
 
 function Login() {
 
@@ -35,9 +37,12 @@ function Login() {
     }
 
     return (
-        <div className='container background-cover'>
+        <div>
+            <NavBar />
             <AccountHeader text='Log-In' />
-            <AccountEntry making={false} onClickTop={btnLoginClick} onClickBottom={btnCreateAccountClick}/>
+            <div className="container">
+                <AccountEntry making={false} onClickTop={btnLoginClick} onClickBottom={btnCreateAccountClick}/>
+            </div>
         </div>
     )
 }
