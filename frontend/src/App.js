@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
 import useToken from "./middleware/auth";
+import Logout from "./pages/Logout";
 
 export default function App() {
 
@@ -33,7 +34,7 @@ export default function App() {
                             <Link to="/wishlist">Wishlists</Link>
                         </li>
                         <li>
-                            <Link to="/log-in">Log Out</Link>
+                            <Link to="/log-out">Log Out</Link>
                         </li>
                     </ul>
                 </nav>
@@ -51,8 +52,8 @@ export default function App() {
                     <Route path="/wishlist">
                         <ManageWishlist />
                     </Route>
-                    <Route path="/log-in">
-                        <Login  setToken={ setToken }/>
+                    <Route path="/log-out">
+                        <Logout  setToken={ setToken }/>
                     </Route>
                 </Switch>
             </div>
