@@ -39,9 +39,12 @@ function Login() {
     return (
         <div>
             <NavBar />
+            <div className="pad"></div>
             <AccountHeader text='Log-In' />
             <div className="container">
                 <AccountEntry making={false} onClickTop={btnLoginClick} onClickBottom={btnCreateAccountClick}/>
+            </div>
+            <div className="background-cover">
             </div>
         </div>
     )

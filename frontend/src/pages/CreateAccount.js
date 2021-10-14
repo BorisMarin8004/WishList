@@ -5,6 +5,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
 import {getSignUpConfig} from "../network/RequestTemples";
+import '../css/Login.css'
+import NavBar from "../components/NavBar"
 
 function CreateAccount() {
     // TODO: rig this button
@@ -33,9 +35,14 @@ function CreateAccount() {
     }
 
     return (
-        <div className='container'>
+        <div>
+            <NavBar />
+            <div className="pad"></div>
             <AccountHeader text='Create Account' />
-            <AccountEntry making={true} onClickTop={btnCreateAccountClick} onClickBottom={btnLoginClick}/>
+            <div className="container">
+                <AccountEntry making={true} onClickTop={btnCreateAccountClick} onClickBottom={btnLoginClick}/>
+            </div>
+            <div className="background-cover"></div>
         </div>
     )
 }

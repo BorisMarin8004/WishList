@@ -8,9 +8,9 @@ const defonClick = () => {
 // TODO: change the style changes to be css based
 const Button = ({ text, color, onClick }) => {
     let rColor = "";
-    if(color == "green") {
+    if(color === "green") {
         rColor="#8EE167";
-    } else if(color == "orange") {
+    } else if(color === "orange") {
         rColor = "#FFAF83";
     } else {
         rColor = "#ED5F5F";

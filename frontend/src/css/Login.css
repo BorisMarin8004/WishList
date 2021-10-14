@@ -1,5 +1,7 @@
 body {
-    background-color: rgba(219, 255, 141, 0.64);
+    background-image: url('../images/winter.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: center;
     vertical-align: middle;
@@ -7,8 +9,19 @@ body {
     font-family: Montserrat;
 }
 
+.background-cover {
+    background-color: rgba(219, 255, 141, 0.64) !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: color-burn;
+    z-index: -1;
+}
+
 .container {
-    background-color: rgba(255, 192, 157, 0.41);
+    background-color: rgb(253, 226, 212);
     padding: 40px;
     box-shadow: 0px 4px 0px 4px #FFFFFF;
     border-radius: 59px;
@@ -17,5 +30,9 @@ body {
     left: 0;
     margin-right: auto;
     margin-left: auto;
-    width: 75%;
+    width: 50%;
+}
+
+.pad {
+    padding: 10px;
 }
