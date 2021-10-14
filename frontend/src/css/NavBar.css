@@ -8,12 +8,12 @@
     width: 100%;
   }
 
-  .nav_bar a:link {
+.nav a:link {
     color:white;
     text-decoration: none;
-  }
+}
 
-  .nav_bar a:visited {
+.nav a:visited {
     color:green;
   }
   

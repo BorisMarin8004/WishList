@@ -7,6 +7,8 @@ backend/.DS_Store
 backend/backend/__pycache__/
 backend/controller/__pycache__/
 backend/controller/migrations/__pycache__/
+backend/controller/utils/__pycache__/
+backend/controller/view_manager/__pycache__/
 
 
 # dependencies

@@ -6,7 +6,7 @@ body {
     justify-content: center;
     vertical-align: middle;
     margin: auto;
-    font-family: Montserrat;
+    font-family: Montserrat, serif;
 }
 
 .background-cover {
@@ -23,7 +23,7 @@ body {
 .container {
     background-color: rgb(253, 226, 212);
     padding: 40px;
-    box-shadow: 0px 4px 0px 4px #FFFFFF;
+    box-shadow: 0 4px 0 4px #FFFFFF;
     border-radius: 59px;
     position: fixed;
     right: 0;
