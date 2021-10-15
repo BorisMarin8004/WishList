@@ -17,5 +17,5 @@ jobs:
           email: "bmarin@csumb.edu"
           api_key: "55bd9413-179d-48a2-8a12-d250bfb3983e"
           docker_compose_file: './docker-compose.yml'
-          heroku_apps: '[{"imagename":"wishlist_backend","appname":"app_backend","apptype":"web"},{"imagename":"wishlist_frontend","appname":"app_frontend","apptype":"web"}]'
+          heroku_apps: '[{"imagename":"wishlist_backend","appname":"wishlist001","apptype":"web"},{"imagename":"wishlist_frontend","appname":"frontend001","apptype":"web"}]'
 
