@@ -20,7 +20,7 @@ services:
       context: ./frontend/
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:${PORT}"
     stdin_open: true
     depends_on:
       - backend
