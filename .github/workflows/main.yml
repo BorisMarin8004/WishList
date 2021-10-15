@@ -15,8 +15,8 @@ jobs:
         id: heroku
         uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0
         with:
-          email: "bmarin@csumb.edu"
-          api_key: "55bd9413-179d-48a2-8a12-d250bfb3983e"
+          email: ${{ secrets.HEROKU_EMAIL }}
+          api_key: ${{ secrets.HEROKU_API_KEY }}
           docker_compose_file: './docker-compose.yml'
           heroku_apps: '[{"imagename":"wishlist_backend","appname":"wishlist001","apptype":"web"},{"imagename":"wishlist_frontend","appname":"frontend001","apptype":"web"}]'
 
