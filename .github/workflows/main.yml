@@ -1,4 +1,5 @@
-on: 
+name: Deploy on Heroku
+on:
   push:
     branches: [ main ]
   pull_request:
