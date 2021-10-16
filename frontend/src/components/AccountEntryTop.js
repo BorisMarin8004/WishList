@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import '../css/AccountEntryTop.css'
 
 const AccountEntryTop = ({ making, onClick }) => {
     const [username, setUsername] = useState('')
@@ -25,8 +26,8 @@ const AccountEntryTop = ({ making, onClick }) => {
     }
     return (
         <form className='account-form' onSubmit={onSubmit}>
-            <div className='form-control userNameEntry'>
-                <label className='userNameEntry-Text userNameEntry-Background'>Username</label>
+            <div className="entryBox">
+                <label>Username:</label>
                 <input
                     type='text'
                     placeholder='Enter Username'
@@ -34,8 +35,9 @@ const AccountEntryTop = ({ making, onClick }) => {
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div className='form-control passwordEntry'>
-                <label className='passwordEntry-Text passwordEntry-Background'>Password</label>
+            <div className="pad"></div>
+            <div className="entryBox">
+                <label>Password:</label>
                 <input
                     type='password'
                     placeholder='Enter Password'
@@ -43,7 +45,8 @@ const AccountEntryTop = ({ making, onClick }) => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <input type='submit' value={making ? 'Create Account' : 'Log-In'} className='logInBtn logInBtn-Text logInBtn-Background'/>
+            <div className="pad"></div>
+            <input type='submit' value={making ? 'Create Account' : 'Log-In'} className='button'/>
         </form>
     )
 }

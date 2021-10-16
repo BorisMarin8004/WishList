@@ -1,9 +1,10 @@
 import Button from './Button'
 import PropTypes from 'prop-types'
+import '../css/AccountEntryBottom.css'
 
 const AccountEntryBottom = ({ making, onClick }) => {
     return (
-        <div>
+        <div className="bottom">
             <p className='questionText'>{making ? 'Already have an account?' : "Don't have an account?"}</p>
             <Button text={making ? 'Log-In' : 'Create Account'} color='Orange' onClick={onClick}/>
         </div>
