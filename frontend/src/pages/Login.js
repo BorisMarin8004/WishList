@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import axios from "axios";
 import {getLoginConfig, getSignUpConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
+import AccountHeader from '../components/AccountHeader'
+import '../css/Login.css'
 
 export default function Login({ setToken }) {
     const [username, setUserName] = useState();
@@ -31,19 +33,34 @@ export default function Login({ setToken }) {
     }
 
     return(
-        <div className="login-wrapper">
+        <div>
             <AccountHeader text='Log-In' />
-            <label>
-                <p>Username</p>
-                <input type="text" onChange={e => setUserName(e.target.value)} />
-            </label>
-            <label>
-                <p>Password</p>
-                <input type="password" onChange={e => setPassword(e.target.value)} />
-            </label>
-            <div>
-                <Button text="Login" color="green" onClick={handleLogin}/>
-                <Button text="Sign Up" color="green" onClick={handleSignUp}/>
+            <div className="container">
+                <div className="entryBox">
+                    <label>Username:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter Username'
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="entryBox">
+                    <label>Password:</label>
+                    <input
+                        type='password'
+                        placeholder='Enter Password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="buttons">
+                    <Button text="Login" color="green" onClick={handleLogin}/>
+                    <div className="pad"></div>
+                    <Button text="Sign Up" color="green" onClick={handleSignUp}/>
+                </div>
             </div>
             <div className="background-cover">
             </div>

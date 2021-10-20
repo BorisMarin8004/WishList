@@ -1,4 +1,4 @@
-body {
+html body {
     background-image: url('../images/winter.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,10 +7,11 @@ body {
     vertical-align: middle;
     margin: auto;
     font-family: Montserrat, serif;
+    z-index: 1;
 }
 
 .background-cover {
-    background-color: rgba(219, 255, 141, 0.64) !important;
+    background-color: rgba(219, 255, 141, 0.64);
     position: absolute;
     top: 0;
     left: 0;
@@ -33,6 +34,34 @@ body {
     width: 50%;
 }
 
+.entryBox {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+label {
+    color: #8EE167;
+    font-size: 36px;
+    padding-right: 15px;
+}
+
+input[type="text"], input[type="password"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    height: 200%;
+    font-size: 24px;
+    opacity: 0.5;
+}
+
 .pad {
     padding: 10px;
+}
+
+.buttons {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
