@@ -1,10 +1,10 @@
 nav {
   background-color:rgb(172, 233, 157);
   font-family: monospace;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 2;
   text-align: center;
 }
