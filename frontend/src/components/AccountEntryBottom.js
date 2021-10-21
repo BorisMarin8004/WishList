@@ -1,6 +1,6 @@
 import Button from './Button'
 import PropTypes from 'prop-types'
-import '../css/AccountEntryBottom.css'
+import '../css/components/AccountEntryBottom.css'
 
 const AccountEntryBottom = ({ making, onClick }) => {
     return (

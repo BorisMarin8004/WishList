@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import '../css/AccountHeader.css'
+import '../css/components/AccountHeader.css'
 
 const AccountHeader = ({ text }) => {
     return (

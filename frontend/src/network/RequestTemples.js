@@ -1,4 +1,16 @@
 import ROUTER from "./Router";
+import _ from 'underscore';
+
+const parseQuery = (query) => {
+    let parsedQuery = ""
+    if (!_.isEmpty(query)) {
+        parsedQuery += "?"
+        for (const [ queryKey, queryElement ] of Object.entries(query)) {
+            parsedQuery += queryKey + "=" + queryElement + "&"
+        }
+    }
+    return parsedQuery
+}
 
 const getGenericConfig = (url, method, data) => ({
     url: url,
@@ -6,14 +18,11 @@ const getGenericConfig = (url, method, data) => ({
     headers: {
         "Content-Type": "application/json"
     },
-    data: data
+    data: data,
 })
 
 const getLoginConfig = (cred) => (
-    getGenericConfig(ROUTER.login, "POST", {
-        "username": cred.username,
-        "password": cred.password
-    })
+    getGenericConfig(ROUTER.login, "POST", cred)
 )
 
 const getSignUpConfig = (cred) => {
@@ -22,16 +31,33 @@ const getSignUpConfig = (cred) => {
     return conf
 }
 
-const getAuthConfig = (url, method, token, data={}) => (
-    getGenericConfig(url, method, data).headers = {
+const getAuthConfig = (url, method, token, data = {}) => {
+    let conf = getGenericConfig(url, method, data)
+    conf.headers = {
         "Content-Type": "application/json",
         "Authorization": `Token ${token}`
     }
+    return conf
+}
+
+const getUserModelConfig = (method, token, query={}, data={}) => (
+    getAuthConfig(ROUTER.api.users + parseQuery(query), method, token, data)
+)
+
+const getItemModelConfig = (method, token, query={}, data={}) => (
+    getAuthConfig(ROUTER.api.items + parseQuery(query), method, token, data)
+)
+
+const getWishlistModelConfig = (method, token, query={}, data={}) => (
+    getAuthConfig(ROUTER.api.wish_lists + parseQuery(query), method, token, data)
 )
 
 export {
     getGenericConfig,
     getLoginConfig,
     getSignUpConfig,
-    getAuthConfig
+    getAuthConfig,
+    getUserModelConfig,
+    getItemModelConfig,
+    getWishlistModelConfig
 }

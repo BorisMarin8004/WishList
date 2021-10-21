@@ -5,15 +5,23 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
-import useToken from "./customHooks/auth";
+import {useId, usePassword, useToken, useUsername} from "./customHooks/auth";
 import Button from "./components/Button";
+import React, {useState} from "react";
 
 export default function App() {
-
+    const { id, setId } = useId();
     const { token, setToken } = useToken();
+    const { username, setUsername } = useUsername();
+    const { password, setPassword } = usePassword();
 
-    if(!token) {
-        return <Login setToken={setToken} />
+    if(token == null) {
+        return <Login
+            setId = { setId }
+            setToken = { setToken }
+            setUsername = { setUsername }
+            setPassword = { setPassword }
+        />
     }
 
     return (
@@ -44,7 +52,8 @@ export default function App() {
                         <li>
                             <Button text="Log Out" color="green" width="300px" onClick={() => {
                                 console.log("Dropping token")
-                                setToken(null)
+                                setToken()
+                                localStorage.clear()
                             }}/>
                         </li>
                     </ul>
@@ -55,13 +64,22 @@ export default function App() {
                         <Home />
                     </Route>
                     <Route path="/item">
-                        <ManageItem />
+                        <ManageItem userContext = { React.createContext({ ...localStorage }) } />
                     </Route>
                     <Route path="/user-profile">
-                        <UserProfile />
+                        <UserProfile
+                            id = { id }
+                            setId = { setId }
+                            token = { token }
+                            setToken = { setToken }
+                            username = { username }
+                            setUsername = { setUsername }
+                            password = { password }
+                            setPassword = { setPassword }
+                        />
                     </Route>
                     <Route path="/wishlist">
-                        <ManageWishlist />
+                        <ManageWishlist userContext = { React.createContext({ ...localStorage }) } />
                     </Route>
                 </Switch>
             </div>
