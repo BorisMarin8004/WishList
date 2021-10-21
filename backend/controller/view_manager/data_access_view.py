@@ -30,10 +30,10 @@ class DataAccessView(mixins.CreateModelMixin,
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())
-        # data = self.request.data
-        # if self.lookup_field not in data:
-        #     raise ValueError("Missing id parameter")
-        obj = queryset.get(pk=self.request.data["id"])
+        data = self.request.data
+        if self.lookup_field not in data:
+            raise ValueError("Missing id parameter")
+        obj = queryset.get(pk=self.request.data[self.lookup_field])
         self.check_object_permissions(self.request, obj)
         return obj
 
