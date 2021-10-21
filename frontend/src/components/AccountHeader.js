@@ -3,8 +3,8 @@ import '../css/AccountHeader.css'
 
 const AccountHeader = ({ text }) => {
     return (
-        <div className="title">
-            <h1>{text}</h1>
+        <div>
+            <h1 id="head">{text}</h1>
         </div>
     )
 }

@@ -1,9 +1,12 @@
-nav {
-    margin: 0 auto;
+.nav_bar {
     background-color:rgb(172, 233, 157);
     opacity: 0.9;
     font-family: monospace;
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 
 .nav a:link {
     color:white;
@@ -12,8 +15,27 @@ nav {
 
 .nav a:visited {
     color:green;
+  }
+  
+  .nav_bar a:hover {
+    color:  rgb(252, 200, 176);;
+  }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-.nav a:hover {
-    color:  rgb(252, 200, 176);
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }

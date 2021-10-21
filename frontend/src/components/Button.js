@@ -6,7 +6,7 @@ const defonClick = () => {
 }
 
 // TODO: change the style changes to be css based
-const Button = ({ text, color, onClick }) => {
+const Button = ({ text, color, width, onClick }) => {
     let rColor;
     if(color === "green") {
         rColor="#8EE167";
@@ -21,7 +21,7 @@ const Button = ({ text, color, onClick }) => {
             backgroundColor: "white",
             borderRadius: "14px",
             boxShadow: "0px 4px 0px" + rColor,
-            width: "478px",
+            width: width,
             height: "60px",
             fontSize: "24px",
             border: "none"
@@ -34,6 +34,7 @@ const Button = ({ text, color, onClick }) => {
 Button.defaultProps = {
     color: 'Green',
     text: 'Click',
+    width: "478px",
     onClick: defonClick
 }
 
