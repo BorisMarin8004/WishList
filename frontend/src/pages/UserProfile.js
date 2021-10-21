@@ -1,9 +1,20 @@
 import React from 'react'
-export default function UserProfile() {
+import React, { useState } from 'react';
 
+export default function UserProfile(){
+	
+	this.state =
+
+	const btnSaveClick = () => {
+		
+    }
+
+	const btnDeleteClick = () => {
+
+	}
+	
 
     return(
-        
         <div>
             <h1 class="title"> Edit Profile</h1>
             <div class ="container">
