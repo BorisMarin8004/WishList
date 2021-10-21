@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
-import '../css/AccountEntryTop.css'
+import '../css/components/AccountEntryTop.css'
 
 const AccountEntryTop = ({ making, onClick }) => {
     const [username, setUsername] = useState('')

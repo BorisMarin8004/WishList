@@ -1,7 +1,8 @@
 import React from 'react'
 import Button from '../components/Button'
-import '../css/Home.css'
+import '../css/pages/Home.css'
 import tree from '../images/tree.png'
+import {Link} from "react-router-dom";
 
 function Home() {
     //TODO: rig button when add item page is made.
@@ -23,12 +24,15 @@ function Home() {
                     <div className="questions">
                         <div>
                             <p className="questionText">Found an item? Add it now so you don't forget later!</p>
-                            <Button text="Add an item" color="green" onClick={btnAddItemClick}/>
+                            <Link to="/item">
+                                <Button text="Add an item" color="green" onClick={btnAddItemClick}/>
+                            </Link>
                         </div>
                         <div>
                             <p className="questionText">Already added all your items? See your wishlist here.</p>
-                            <Button text="View My Wishlist" color="orange" onClick={btnWishlistClick}/>
-
+                            <Link to="/wishlist">
+                                <Button text="View My Wishlist" color="orange" onClick={btnWishlistClick}/>
+                            </Link>
                         </div>
                     </div>
                 </div>

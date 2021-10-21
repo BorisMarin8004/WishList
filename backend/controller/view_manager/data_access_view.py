@@ -18,6 +18,7 @@ class DataAccessView(mixins.CreateModelMixin,
     url_conf = {
         "get": "get_models",
         "post": "add_models",
+        "put": "update",
         "delete": "delete_models"
     }
 
@@ -50,9 +51,12 @@ class DataAccessView(mixins.CreateModelMixin,
 
     def add_models(self, *args, **kwargs):
         try:
+            print(self.model.objects.filter(**self.request.data).exists())
+            if len(self.filter_models(**self.request.data)) > 0:
+                raise ValueError("Duplicate detected, cannot add module object!")
             data = self.create(self.request).data
             res = get_response(data, status=200)
-        except (FieldError, ValueError) as e:
+        except (FieldError, ValueError, Exception) as e:
             data = {"error": str(e)}
             res = get_response(data, status=400)
         return res

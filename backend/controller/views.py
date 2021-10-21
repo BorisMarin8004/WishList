@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.db.utils import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from .view_manager import *
 from .serializer import *
@@ -7,9 +8,14 @@ from .models import *
 
 @csrf_exempt
 def signUpView(request):
-    body = get_body(request)
-    User.objects.create_user(**body)
-    return get_response(body, status=200)
+    try:
+        body = get_body(request)
+        User.objects.create_user(**body)
+        status = 200
+    except IntegrityError as e:
+        body = {"error": str(e)}
+        status = 400
+    return get_response(body, status=status)
 
 
 class ItemsView(DataAccessView):
