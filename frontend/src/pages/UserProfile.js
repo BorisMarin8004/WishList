@@ -23,7 +23,7 @@ export default function UserProfile({ token }) {
             "username": username,
             "password": password
         })).then(
-            res => alert(`User ${username} updated to ${res.data.username} registered`)
+            res => alert(`User ${username} updated to ${res.data} registered`)
         ).catch(
             err => {
                 alert("Registration failed")

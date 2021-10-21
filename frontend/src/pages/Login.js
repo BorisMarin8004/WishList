@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
@@ -7,22 +7,25 @@ import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
 import { useUsername, usePassword, useId } from "../customHooks/auth";
 
-export default function Login({ setToken }) {
-    const { username, setUsername } = useUsername();
-    const { password, setPassword } = usePassword();
-    const { id, setId } = useId();
+export default function Login({ setId, setToken, setUsername, setPassword }) {
+    const { inputUsername, setInputUsername } = useState();
+    const { inputPassword, setInputPassword } = useState();
 
     function handleLogin() {
         function setUserId(token){
-            axios(getUserModelConfig("get", token, {"username": username})).then(
-                res => setId(res.data[0].id)
+            axios(getUserModelConfig("get", token, {"username": inputUsername})).then(
+                res => {
+                    setId(res.data[0].id)
+                    setUsername(inputUsername)
+                    setPassword(inputPassword)
+                }
             ).catch(
                 err => {
                     console.log(err)
                 }
             )
         }
-        axios(getLoginConfig({"username": username, "password": password})).then(
+        axios(getLoginConfig({"username": inputUsername, "password": inputPassword})).then(
             res => {
                 setToken(res.data.token)
                 setUserId(res.data.token)
@@ -55,8 +58,8 @@ export default function Login({ setToken }) {
                     <input
                         type='text'
                         placeholder='Enter Username'
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={inputUsername}
+                        onChange={(e) => setInputUsername(e.target.value)}
                     />
                 </div>
                 <div className="pad"/>
@@ -65,8 +68,8 @@ export default function Login({ setToken }) {
                     <input
                         type='password'
                         placeholder='Enter Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={inputPassword}
+                        onChange={(e) => setInputPassword(e.target.value)}
                     />
                 </div>
                 <div className="pad"/>
@@ -83,5 +86,8 @@ export default function Login({ setToken }) {
 }
 
 Login.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setId: PropTypes.func.isRequired,
+    setToken: PropTypes.func.isRequired,
+    setUsername: PropTypes.func.isRequired,
+    setPassword: PropTypes.func.isRequired
 };

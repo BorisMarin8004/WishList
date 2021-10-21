@@ -5,15 +5,23 @@ import UserProfile from "./pages/UserProfile";
 import Login from "./pages/Login";
 import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
-import { useToken } from "./customHooks/auth";
+import {useId, usePassword, useToken, useUsername} from "./customHooks/auth";
 import Button from "./components/Button";
 
 export default function App() {
 
+    const { id, setId } = useId();
     const { token, setToken } = useToken();
+    const { username, setUsername } = useUsername();
+    const { password, setPassword } = usePassword();
 
     if(!token) {
-        return <Login setToken={ setToken }/>
+        return <Login
+            setId = { setId }
+            setToken={ setToken }
+            setUsername={ setUsername }
+            setPassword = { setPassword }
+        />
     }
 
     return (
