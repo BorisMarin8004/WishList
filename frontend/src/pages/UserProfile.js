@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import {useId, usePassword, useUsername} from "../customHooks/auth";
 import "../css/pages/UserProfile.css"
 import Button from "../components/Button";
 import axios from "axios";
 import { getUserModelConfig } from "../network/RequestTemples";
 
-export default function UserProfile({ token }) {
-    const { username, setUsername } = useUsername();
-    const { password, setPassword } = usePassword();
-    const { id, setId } = useId();
+export default function UserProfile({ token, id, setId, username, setUsername, password, setPassword }) {
+    // const { username, setUsername } = useUsername();
+    // const { password, setPassword } = usePassword();
+    // const { id, setId } = useId();
 
-    const { newUsername, setNewUsername } = useState();
-    const { newPassword, setNewPassword } = useState();
+    const [ newUsername, setNewUsername ] = useState();
+    const [ newPassword, setNewPassword ] = useState();
 
     console.log(username, password)
 

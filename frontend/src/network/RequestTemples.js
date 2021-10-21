@@ -44,12 +44,12 @@ const getUserModelConfig = (method, token, query={}, data={}) => (
     getAuthConfig(ROUTER.api.users + parseQuery(query), method, token, data)
 )
 
-const getItemModelConfig = (method, token, data={}) => (
-    getAuthConfig(ROUTER.api.items, method, token, data)
+const getItemModelConfig = (method, token, query={}, data={}) => (
+    getAuthConfig(ROUTER.api.items + parseQuery(query), method, token, data)
 )
 
-const getWishlistModelConfig = (method, token, data={}) => (
-    getAuthConfig(ROUTER.api.wish_lists, method, token, data)
+const getWishlistModelConfig = (method, token, query={}, data={}) => (
+    getAuthConfig(ROUTER.api.wish_lists + parseQuery(query), method, token, data)
 )
 
 export {
