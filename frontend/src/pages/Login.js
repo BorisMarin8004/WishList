@@ -1,50 +1,73 @@
-import AccountEntry from "../components/AccountEntry"
-import AccountHeader from "../components/AccountHeader"
-import '../css/Login.css'
-import React, {useState} from 'react'
-import ReactDOM from 'react-dom'
-import CreateAccount from "./CreateAccount"
-import Home from "./Home"
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import axios from "axios";
-import { getLoginConfig } from "../network/RequestTemples";
-import NavBar from '../components/NavBar'
+import {getLoginConfig, getSignUpConfig} from "../network/RequestTemples";
+import Button from "../components/Button";
+import AccountHeader from '../components/AccountHeader'
+import '../css/Login.css'
 
-function Login() {
+export default function Login({ setToken }) {
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
 
-    const [token, setToken] = useState('')
-
-    const btnLoginClick = (cred) => {
-        console.log({"username": cred.username, "password": cred.password})
-        axios(getLoginConfig(cred)).then(
-            res => {
-                console.log(res.data)
-                setToken(res.data.token)
-            }
+    function handleLogin() {
+        axios(getLoginConfig({"username": username, "password": password})).then(
+            res => setToken(res.data.token)
         ).catch(
-            error => { console.log(error) }
+            err => {
+                alert("Incorrect Username or Password")
+                console.log(err)
+            }
         )
     }
 
-    // TODO: rig this button
-    // Go to Create Account page.
-    const btnCreateAccountClick = () => {
-        ReactDOM.render(
-            <React.StrictMode>
-                <CreateAccount />
-            </React.StrictMode>,
-            document.getElementById('root')
+    function handleSignUp() {
+        axios(getSignUpConfig({"username": username, "password": password})).then(
+            res => alert(`User ${res.data.username} registered`)
+        ).catch(
+            err => {
+                alert("Registration failed")
+                console.log(err)
+            }
         )
     }
 
-    return (
+    return(
         <div>
-            <NavBar />
             <AccountHeader text='Log-In' />
             <div className="container">
-                <AccountEntry making={false} onClickTop={btnLoginClick} onClickBottom={btnCreateAccountClick}/>
+                <div className="entryBox">
+                    <label>Username:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter Username'
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="entryBox">
+                    <label>Password:</label>
+                    <input
+                        type='password'
+                        placeholder='Enter Password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="buttons">
+                    <Button text="Login" color="green" onClick={handleLogin}/>
+                    <div className="pad"></div>
+                    <Button text="Sign Up" color="green" onClick={handleSignUp}/>
+                </div>
+            </div>
+            <div className="background-cover">
             </div>
         </div>
     )
 }
 
-export default Login
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+};

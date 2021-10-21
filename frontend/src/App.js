@@ -1,100 +1,70 @@
-import './App.css';
-import {useState} from "react";
-import axios from "axios";
+import './css/App.css';
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
+import Home from "./pages/Home";
+import UserProfile from "./pages/UserProfile";
+import Login from "./pages/Login";
+import ManageItem from "./pages/ManageItem"
+import ManageWishlist from "./pages/ManageWishlist"
+import useToken from "./customHooks/auth";
+import Button from "./components/Button";
 
-const TEST_USERNAME = "admin"
-const TEST_PASSWORD = "admin"
-const SWITCH = {
-    BACKEND_URL: "http://0.0.0.0:8000",
-    API: "api"
-}
-const ROUTER = {
-    admin: `${SWITCH.BACKEND_URL}/admin/`,
-    login: `${SWITCH.BACKEND_URL}/login/`,
-    api: {
-        items: `${SWITCH.BACKEND_URL}/${SWITCH.API}/item/`,
-        wish_lists: `${SWITCH.BACKEND_URL}/${SWITCH.API}/wish_list/`,
-        users: `${SWITCH.BACKEND_URL}/${SWITCH.API}/user/`
-    }
-}
+export default function App() {
 
-function App() {
-    const [username, setUsername] = useState(TEST_USERNAME)
-    const [password, setPassword] = useState(TEST_PASSWORD)
-    const [token, setToken] = useState(null)
+    const { token, setToken } = useToken();
 
-    function login(){
-        console.log({
-            "username": username,
-            "password": password
-        })
-        axios({
-            url: ROUTER.login,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            data: {
-                "username": username,
-                "password": password
-            }
-        }).then(
-            res => {
-                console.log(res.data)
-                setToken(res.data.token)
-            }
-        ).catch(
-            error => {
-                console.log(error)
-            }
-        )
-    }
-
-    function getItems(){
-        console.log(token)
-        axios({
-            url: ROUTER.api.items,
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Token ${token}`
-            }
-        }).then(
-            res => console.log(res.data)
-        ).catch(
-            error => {
-                console.log(error)
-            }
-        )
+    if(!token) {
+        return <Login setToken={setToken} />
     }
 
     return (
-        <div className="App">
-            <h2>Login</h2>
-            <label>
-                Username:
-                <input
-                    type="text"
-                    name="username"
-                    value={username}
-                    onChange={event => setUsername(event.target.value)}
-                />
-            </label>
-            <br/>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={event => setPassword(event.target.value)}
-                />
-            </label>
-            <br/>
-            <button onClick={login}>Login</button>
-            <button onClick={getItems}>Get Items</button>
-        </div>
+        <BrowserRouter>
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/home">
+                                <Button text="Home" color="green" width="300px" onClick={() => console.log("Home clicked")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/item">
+                                <Button text="Items" color="green" width="300px" onClick={() => console.log("Items clicked")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/user-profile">
+                                <Button text="View Profile" color="green" width="300px" onClick={() => console.log("View Profile clicked")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/wishlist">
+                                <Button text="Wishlists" color="green" width="300px" onClick={() => console.log("Wishlists clicked")}/>
+                            </Link>
+                        </li>
+                        <li>
+                            <Button text="Log Out" color="green" width="300px" onClick={() => {
+                                console.log("Dropping token")
+                                setToken(null)
+                            }}/>
+                        </li>
+                    </ul>
+                </nav>
+
+                <Switch>
+                    <Route exact path={["/home", "/"]}>
+                        <Home />
+                    </Route>
+                    <Route path="/item">
+                        <ManageItem />
+                    </Route>
+                    <Route path="/user-profile">
+                        <UserProfile />
+                    </Route>
+                    <Route path="/wishlist">
+                        <ManageWishlist />
+                    </Route>
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
 }
-
-export default App;

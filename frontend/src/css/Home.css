@@ -1,10 +1,12 @@
 body {
     background-color: white;
+    background-image: white;
+    background-size: cover;
     display: flex;
     justify-content: center;
     vertical-align: middle;
     margin: auto;
-    font-family: Montserrat;
+    font-family: Montserrat, serif;
 }
 
 h1 {
@@ -49,4 +51,22 @@ h4 {
 img {
     width: 500px;
     height: 700px;
+}
+
+.background-cover-home {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#homepage {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

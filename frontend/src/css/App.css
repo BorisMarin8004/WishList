@@ -1,0 +1,30 @@
+nav {
+  background-color:rgb(172, 233, 157);
+  font-family: monospace;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+}
+
+nav a:hover {
+  color:  rgb(252, 200, 176);;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}

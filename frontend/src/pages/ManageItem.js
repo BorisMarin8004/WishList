@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Button from '../components/Button'
 function AddItem() {
 
-	const {token, setToken} = useToken(); 
+	const {token, setToken} = useToken();
 
 	function addItem() {
 		axios(getAddItemConfig({"description":description, "price":price, "URL":URL,  })).then(
@@ -22,7 +22,7 @@ function AddItem() {
 				<input type="text" value={description} placeholder="Description" class="editText"></input>
 				<br></br>
 				<input type="text" value={price} placeholder ="Price" class="editText"></input>
-				<br></br> 
+				<br></br>
 				<input type="text" value={URL} placeholder="URL"class="editText"></input>
 				<br></br>
 				<button text="Add Item" onClick= {addItem}></button>

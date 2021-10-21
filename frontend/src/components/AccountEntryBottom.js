@@ -6,7 +6,7 @@ const AccountEntryBottom = ({ making, onClick }) => {
     return (
         <div className="bottom">
             <p className='questionText'>{making ? 'Already have an account?' : "Don't have an account?"}</p>
-            <Button text={making ? 'Log-In' : 'Create Account'} color='Orange' onClick={onClick}/>
+            <Button text={making ? 'Log-In' : 'Create Account'} color='orange' onClick={onClick}/>
         </div>
     )
 }
