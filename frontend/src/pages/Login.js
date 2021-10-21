@@ -1,20 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
 import {getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
-import { useUsername, usePassword, useId } from "../customHooks/auth";
 
-export default function Login({ setId, setToken, setUsername, setPassword }) {
-    const { inputUsername, setInputUsername } = useState();
-    const { inputPassword, setInputPassword } = useState();
+export default function Login(
+    { setId, setToken, setUsername, setPassword }
+    // { userContext }
+) {
+    const [ inputUsername, setInputUsername ] = useState("");
+    const [ inputPassword, setInputPassword ] = useState("");
 
     function handleLogin() {
         function setUserId(token){
             axios(getUserModelConfig("get", token, {"username": inputUsername})).then(
                 res => {
+                    // console.log(userContext)
                     setId(res.data[0].id)
                     setUsername(inputUsername)
                     setPassword(inputPassword)
@@ -27,6 +30,7 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
         }
         axios(getLoginConfig({"username": inputUsername, "password": inputPassword})).then(
             res => {
+                // console.log(userContext)
                 setToken(res.data.token)
                 setUserId(res.data.token)
             }
@@ -39,7 +43,7 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
     }
 
     function handleSignUp() {
-        axios(getSignUpConfig({"username": username, "password": password})).then(
+        axios(getSignUpConfig({"username": inputUsername, "password": inputPassword})).then(
             res => alert(`User ${res.data.username} registered`)
         ).catch(
             err => {
@@ -85,9 +89,9 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
     )
 }
 
-Login.propTypes = {
-    setId: PropTypes.func.isRequired,
-    setToken: PropTypes.func.isRequired,
-    setUsername: PropTypes.func.isRequired,
-    setPassword: PropTypes.func.isRequired
-};
+// Login.propTypes = {
+//     setId: PropTypes.func.isRequired,
+//     setToken: PropTypes.func.isRequired,
+//     setUsername: PropTypes.func.isRequired,
+//     setPassword: PropTypes.func.isRequired
+// };
