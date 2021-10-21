@@ -1,8 +1,10 @@
 nav {
   background-color:rgb(172, 233, 157);
   font-family: monospace;
-  position: relative;
-  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
   z-index: 2;
   text-align: center;
 }
@@ -25,9 +27,4 @@ li {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-}
-
-div#root {
-  width: 100%;
-  height: 100%;
 }

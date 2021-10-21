@@ -1,5 +1,6 @@
 body {
     background-color: white;
+    background-image: white;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -25,31 +26,25 @@ h4 {
     color: #FFAF83;
 }
 
-.sections {
+.items {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
+    margin: -10px 0 0 0;
 }
 
-.questions {
-    text-align: center;
+.item-container {
+    margin-top: 10px;
     background-color: rgba(255, 175, 131, 0.33);
-    border-radius: 44px;
+    border-radius: 30px;
     padding: 40px;
 }
 
-.questionText {
-    color: #80AD82;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 36px;
-    line-height: 44px;
-    text-align: center;
-}
-
-img {
-    width: 500px;
-    height: 700px;
+.item-img {
+    width: 100px;
+    height: 100px;
+    float: right;
 }
 
 .background-cover-home {
@@ -60,4 +55,8 @@ img {
     width: 100vw;
     height: 100vh;
     z-index: -1;
+}
+
+.item-button {
+    float: right;
 }
