@@ -1,0 +1,72 @@
+nav_bar {
+    margin: 0 auto;
+    background-color:rgb(172, 233, 157);
+    opacity: 0.9;
+  }
+  
+  .nav_bar ul {
+    text-align: center;
+    color: white
+  }
+  
+  .nav_bar ul li {
+    color:whitesmoke;
+    font-size:20px;
+    display: inline-block;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .nav_bar a:link {
+    color:white;
+      text-decoration: none;
+  }
+  
+  .nav_bar a:visited {
+    color:green;
+  }
+  
+  .nav_bar a:hover {
+    color: rgb(252, 200, 176);
+  }
+  
+  .nav_bar .current {
+    background-color: green
+  }
+  
+  .title{
+      text-align:center;
+      color: rgb(172, 233, 157);
+  }
+  
+  .container {  
+      display: flex inline-block;
+    justify-content: center;
+    background-color:rgb(252, 200, 176);
+      font-family: monospace;
+    text-align: center;
+    border-radius: 25px;
+    padding: 20px;
+  }
+  
+  button {
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 25px;
+      color: rgb(172, 233, 157);
+    border: .5px solid green; 
+      background-color:white;
+    font-family: 'Rajdhani', sans-serif;
+      padding: 5px;
+  }
+  
+  .redBtn{
+      color: rgb(240, 120, 105);
+    border: .5px solid  rgb(240, 120, 105);
+      background-color:white;
+  }
+  
+  ::placeholder{
+      color: rgb(172, 233, 157);
+  }
+  
