@@ -1,6 +1,7 @@
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.core.exceptions import FieldError
+from django.contrib.auth.hashers import make_password
 from rest_framework import viewsets, mixins
 from .view_utils import *
 
@@ -15,6 +16,7 @@ class DataAccessView(mixins.CreateModelMixin,
     authentication_classes = [TokenAuthentication, ]
     permission_classes = [IsAuthenticated, ]
     model = None
+    lookup_field = "id"
     url_conf = {
         "get": "get_models",
         "post": "add_models",
@@ -25,6 +27,21 @@ class DataAccessView(mixins.CreateModelMixin,
     @classmethod
     def as_view(cls, actions=None, **kwargs):
         return super().as_view(cls.url_conf)
+
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+        # data = self.request.data
+        # if self.lookup_field not in data:
+        #     raise ValueError("Missing id parameter")
+        obj = queryset.get(pk=self.request.data["id"])
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        data = self.request.data
+        if "password" in data:
+            self.request.data["password"] = make_password(self.request.data["password"])
+        return super().update(request, *args, **kwargs)
 
     def filter_models(self, **filter_params):
         return list(map(
