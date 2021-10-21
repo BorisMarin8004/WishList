@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 import django_heroku
 from pathlib import Path
 
@@ -20,18 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-jd67-812eb7h^n@3r6$ak+jnvk)shj8b0fnjc1*you1r1^kf4*'
-
+PORT = "3000"
 ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://0.0.0.0:3000",
+    "http://localhost:{}".format(PORT),
+    "http://0.0.0.0:{}".format(PORT),
 ]
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
-    "http://localhost:3000",
-    "http://0.0.0.0:3000",
+    "http://localhost:{}".format(PORT),
+    "http://0.0.0.0:{}".format(PORT),
 )
 
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
