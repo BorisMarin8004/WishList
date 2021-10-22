@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
 import axios from "axios";
 import {getItemModelConfig, getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
-import { useUsername, usePassword, useId } from "../customHooks/auth";
 
 /*  **Todo:
     add and remove item, to wishlist, user had access to item if its in their wishlist
@@ -104,10 +102,3 @@ export default function ManageItem({ userContext }) {
         </div>
     )
 }
-
-Login.propTypes = {
-    setId: PropTypes.func.isRequired,
-    setToken: PropTypes.func.isRequired,
-    setUsername: PropTypes.func.isRequired,
-    setPassword: PropTypes.func.isRequired
-};
