@@ -5,7 +5,13 @@ function makeContext(data) {
 }
 
 function unpackContext(context) {
-    return context.userContext._currentValue
+    let contextObj = {}
+    console.log(context.userContext._currentValue)
+    for (const [key, value] of Object.entries(context.userContext._currentValue)){
+        let arr = value.split('"')
+        contextObj[key] = arr.length > 1 ? arr[1] : arr[0]
+    }
+    return contextObj
 }
 
 export {
