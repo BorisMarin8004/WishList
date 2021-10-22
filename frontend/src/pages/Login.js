@@ -50,8 +50,11 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
     }
 
     return(
-        <div>
-            <AccountHeader text='Log-In' />
+        <div id="loginPage">
+            <div id="title">
+                <AccountHeader text='Log-In' />
+            </div>
+            
             <div className="container">
                 <div className="entryBox">
                     <label>Username:</label>
@@ -79,7 +82,11 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
                     <Button text="Sign Up" color="green" onClick={handleSignUp}/>
                 </div>
             </div>
-            <div className="background-cover">
+            <div className="background">
+                <div className="background-blur">
+                </div>
+                <div className="background-cover">
+                </div>
             </div>
         </div>
     )
