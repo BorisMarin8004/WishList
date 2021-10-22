@@ -25,7 +25,6 @@ PORT = "3000"
 ALLOWED_ORIGINS = [
     "http://localhost:{}".format(PORT),
     "http://0.0.0.0:{}".format(PORT),
-    "http://http://3.139.76.150:{}".format(PORT)
 ]
 CORS_ORIGIN_ALLOW_ALL = False
 
@@ -34,7 +33,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:{}".format(PORT),
     "http://0.0.0.0:{}".format(PORT),
-    "http://http://3.139.76.150:{}".format(PORT)
 )
 
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
