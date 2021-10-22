@@ -1,11 +1,10 @@
 import React, { useState} from 'react'
-import {useId, usePassword, useUsername} from "../customHooks/auth";
 import "../css/pages/UserProfile.css"
 import Button from "../components/Button";
 import axios from "axios";
 import { getUserModelConfig } from "../network/RequestTemples";
 
-export default function UserProfile({ token, id, setId, username, setUsername, password, setPassword }) {
+export default function UserProfile({ token, id, username, setUsername, password, setPassword }) {
     const [ newUsername, setNewUsername ] = useState();
     const [ newPassword, setNewPassword ] = useState();
 

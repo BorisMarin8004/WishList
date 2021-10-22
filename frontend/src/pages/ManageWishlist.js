@@ -1,33 +1,16 @@
 import React from 'react'
-import Button from '../components/Button'
 import '../css/ManageWishlist.css'
-import Item from '../components/Item'
+import {unpackContext} from "../utils/contextUtils";
 
+export default function ManageWishlist(userContext) {
 
-export default function ManageWishlist() {
-    // TODO: Handles deletion of an item
-    function handleDelete() {
-        console.log("Delete clicked")
-    }
-    // TODO: Get wishlist based on user details
-    
+    console.log(unpackContext(userContext))
+
     return (
-        <main>
-            <div id="wishlistpage">
-                <h1>My Wishlist</h1>
-                {/* For each item in wishlist, add a new container*/}
-                <div className="items">
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
-                    <Item />
-                </div>
+        <div id="wishlist_page">
+            <h1>My Wishlists</h1>
+            <div className="wish_lists">
             </div>
-            <div className="background-cover-home">
-            </div>
-        </main>
+        </div>
     )
 }

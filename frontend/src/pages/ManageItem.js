@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
 import { useUsername, usePassword, useId } from "../customHooks/auth";
+import {unpackContext} from "../utils/contextUtils";
 
 /*  **Todo:
     add and remove item, to wishlist, user had access to item if its in their wishlist
@@ -15,30 +16,34 @@ import { useUsername, usePassword, useId } from "../customHooks/auth";
     containers: Item Name, price, url, picture url, wishlist
     change parameters to take context as javascript object
     userContext.<whatever you want> - may not work
+
+    **if user comes form wishlist, send back to wishlist - may be done using userContext.
 */
 
-
 export default function ManageItem({ userContext }) {
-    // userContext.userContext._currentValue.token
+    console.log(userContext)
+    const context = userContext.userContext._currentValue
+    console.log("first instance of user context",userContext)
+
     const [ inputItemName, setInputItemName ] = useState("");
     const [ inputURL, setInputURL ] = useState("");
     const [ inputPrice, setInputPrice ] = useState("");
     const [ inputDescription, setInputDescription ] = useState("");
 
     function handleAddItem() {
-        axios(getItemModelConfig("post", token, {}, {
+        axios(getItemModelConfig("post", context.token, {}, {
             "name": inputItemName,
             "url":inputURL,
             "price": inputPrice,
             "description": inputDescription
             })).then(
             res => {
-                 console.log(userContext)
+                console.log(userContext)
 
-                // setInputItemName(inputItemName)
-                // setInputURL(inputURL)
-                // setInputPrice(inputPrice)
-                // setInputDescription(inputDescription)
+                setInputItemName(inputItemName)
+                setInputURL(inputURL)
+                setInputPrice(inputPrice)
+                setInputDescription(inputDescription)
             }
         ).catch(
             err => {
