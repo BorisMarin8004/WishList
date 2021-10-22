@@ -6,10 +6,7 @@ import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
 
-export default function Login(
-    { setId, setToken, setUsername, setPassword }
-    // { userContext }
-) {
+export default function Login({ setId, setToken, setUsername, setPassword }) {
     const [ inputUsername, setInputUsername ] = useState("");
     const [ inputPassword, setInputPassword ] = useState("");
 
@@ -17,7 +14,6 @@ export default function Login(
         function setUserId(token){
             axios(getUserModelConfig("get", token, {"username": inputUsername})).then(
                 res => {
-                    // console.log(userContext)
                     setId(res.data[0].id)
                     setUsername(inputUsername)
                     setPassword(inputPassword)
@@ -28,9 +24,9 @@ export default function Login(
                 }
             )
         }
+        console.log(inputUsername, inputPassword)
         axios(getLoginConfig({"username": inputUsername, "password": inputPassword})).then(
             res => {
-                // console.log(userContext)
                 setToken(res.data.token)
                 setUserId(res.data.token)
             }
