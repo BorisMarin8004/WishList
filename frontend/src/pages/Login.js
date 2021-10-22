@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import axios from "axios";
-import {getLoginConfig, getSignUpConfig} from "../network/RequestTemples";
+import {getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
-import '../css/Login.css'
+import '../css/pages/Login.css'
 
-export default function Login({ setToken }) {
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
+export default function Login({ setId, setToken, setUsername, setPassword }) {
+    const [ inputUsername, setInputUsername ] = useState("");
+    const [ inputPassword, setInputPassword ] = useState("");
 
     function handleLogin() {
-        axios(getLoginConfig({"username": username, "password": password})).then(
-            res => setToken(res.data.token)
+        function setUserId(token){
+            axios(getUserModelConfig("get", token, {"username": inputUsername})).then(
+                res => {
+                    setId(res.data[0].id)
+                    setUsername(inputUsername)
+                    setPassword(inputPassword)
+                }
+            ).catch(
+                err => {
+                    console.log(err)
+                }
+            )
+        }
+        console.log(inputUsername, inputPassword)
+        axios(getLoginConfig({"username": inputUsername, "password": inputPassword})).then(
+            res => {
+                setToken(res.data.token)
+                setUserId(res.data.token)
+            }
         ).catch(
             err => {
                 alert("Incorrect Username or Password")
@@ -22,7 +39,7 @@ export default function Login({ setToken }) {
     }
 
     function handleSignUp() {
-        axios(getSignUpConfig({"username": username, "password": password})).then(
+        axios(getSignUpConfig({"username": inputUsername, "password": inputPassword})).then(
             res => alert(`User ${res.data.username} registered`)
         ).catch(
             err => {
@@ -41,24 +58,24 @@ export default function Login({ setToken }) {
                     <input
                         type='text'
                         placeholder='Enter Username'
-                        value={username}
-                        onChange={(e) => setUserName(e.target.value)}
+                        value={inputUsername}
+                        onChange={(e) => setInputUsername(e.target.value)}
                     />
                 </div>
-                <div className="pad"></div>
+                <div className="pad"/>
                 <div className="entryBox">
                     <label>Password:</label>
                     <input
                         type='password'
                         placeholder='Enter Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={inputPassword}
+                        onChange={(e) => setInputPassword(e.target.value)}
                     />
                 </div>
-                <div className="pad"></div>
+                <div className="pad"/>
                 <div className="buttons">
                     <Button text="Login" color="green" onClick={handleLogin}/>
-                    <div className="pad"></div>
+                    <div className="pad"/>
                     <Button text="Sign Up" color="green" onClick={handleSignUp}/>
                 </div>
             </div>
@@ -68,6 +85,9 @@ export default function Login({ setToken }) {
     )
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-};
+// Login.propTypes = {
+//     setId: PropTypes.func.isRequired,
+//     setToken: PropTypes.func.isRequired,
+//     setUsername: PropTypes.func.isRequired,
+//     setPassword: PropTypes.func.isRequired
+// };
