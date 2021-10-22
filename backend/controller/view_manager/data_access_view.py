@@ -20,7 +20,7 @@ class DataAccessView(mixins.CreateModelMixin,
     url_conf = {
         "get": "get_models",
         "post": "add_models",
-        "put": "update",
+        "put": "update_models",
         "delete": "delete_models"
     }
 
@@ -37,12 +37,6 @@ class DataAccessView(mixins.CreateModelMixin,
         self.check_object_permissions(self.request, obj)
         return obj
 
-    def update(self, request, *args, **kwargs):
-        data = self.request.data
-        if "password" in data:
-            self.request.data["password"] = make_password(self.request.data["password"])
-        return super().update(request, *args, **kwargs)
-
     def filter_models(self, **filter_params):
         return list(map(
             lambda item: dict(self.get_serializer().to_representation(item)),
@@ -56,6 +50,12 @@ class DataAccessView(mixins.CreateModelMixin,
             else:
                 return param[0]
         return {k: parse_query_param(v) for k, v in dict(self.request.query_params).items()}
+
+    def update_models(self, request, *args, **kwargs):
+        data = self.request.data
+        if "password" in data:
+            self.request.data["password"] = make_password(self.request.data["password"])
+        return super().update(request, *args, **kwargs)
 
     def get_models(self, *args, **kwargs):
         try:
