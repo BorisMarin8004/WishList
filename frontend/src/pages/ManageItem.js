@@ -19,33 +19,32 @@ import { useUsername, usePassword, useId } from "../customHooks/auth";
 
 
 export default function ManageItem({ userContext }) {
-
+    // userContext.userContext._currentValue.token
     const [ inputItemName, setInputItemName ] = useState("");
     const [ inputURL, setInputURL ] = useState("");
     const [ inputPrice, setInputPrice ] = useState("");
     const [ inputDescription, setInputDescription ] = useState("");
 
     function handleAddItem() {
-        function setUserId(token){
-            axios(getItemModelConfig("post", token, {}, {"name": inputItemName})).then(
-                res => {
-                    // console.log(userContext)
-                    setInputItemName(inputItemName)
-                    setInputURL(inputURL)
-                    setInputPrice(inputPrice)
-                    setInputDescription(inputDescription)
+        axios(getItemModelConfig("post", token, {}, {
+            "name": inputItemName,
+            "url":inputURL,
+            "price": inputPrice,
+            "description": inputDescription
+            })).then(
+            res => {
+                 console.log(userContext)
 
-
-                    // setUsername(inputUsername)
-                    // setPassword(inputPassword)
-                }
-            ).catch(
-                err => {
-                    console.log(err)
-                }
-            )
-        }
-
+                // setInputItemName(inputItemName)
+                // setInputURL(inputURL)
+                // setInputPrice(inputPrice)
+                // setInputDescription(inputDescription)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
     }
 
 
@@ -105,9 +104,3 @@ export default function ManageItem({ userContext }) {
     )
 }
 
-Login.propTypes = {
-    setId: PropTypes.func.isRequired,
-    setToken: PropTypes.func.isRequired,
-    setUsername: PropTypes.func.isRequired,
-    setPassword: PropTypes.func.isRequired
-};
