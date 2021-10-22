@@ -21,10 +21,13 @@ Item.defaultProps = {
     imghtml: NoImage,
     name: "Item Name",
     desc: "Item Description",
-    price: "Item Price"
+    price: 0.00
 }
 
 Item.propTypes = {
-
+    price: PropTypes.number,
+    name: PropTypes.string.isRequired,
+    desc: PropTypes.string,
+    imghtml: PropTypes.string
 }
 export default Item
