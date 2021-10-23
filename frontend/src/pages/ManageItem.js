@@ -55,43 +55,62 @@ export default function ManageItem( userContext ) {
         )
     }, [context])
 
+    function getItemIds() {
+        axios(getWishlistModelConfig("get", {"id": wishListId})).then(
+            res => {
+                console.log('wishlist to update:', res.data)
+                updateWishList(res.data[0].item_ids)
+
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }
+    function updateWishList(){
+        getItemIds()
+        axios(getWishlistModelConfig("put", {},{"item_ids": item_ids})).then(
+            res => {
+                console.log(res)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }
+
+
+
+    function getItemId( ) {
+        axios(getItemModelConfig("get", {'name': inputItemName})).then(
+            res => {
+                console.log(res.data[0].id)
+                updateWishList(res.data[0].id)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+
+    }
+
     function handleAddItem() {
 
-        function updateWishList( item ){
-            axios(getWishlistModelConfig("put", context.token, {"id":wishListId} )).then(
-                res => {
-                    console.log(res.data)
-                }
-            ).catch(
-                err => {
-                    console.log(err)
-                }
-            )
-        }
 
-        function getItemId( ) {
-            axios(getItemModelConfig("get", context.token, {'name': inputItemName})).then(
-                res => {
-                    console.log(res.data)
-                    updateWishList(res.data)
-                }
-            ).catch(
-                err => {
-                    console.log(err)
-                }
-            )
-
-        }
-        axios(getItemModelConfig("post", context.token, {}, {
+        axios(getItemModelConfig("post",{}, {
             "name": inputItemName,
-            "url":inputURL,
+            "url": inputURL,
             "price": inputPrice,
             "description": inputDescription
             })).then(
             res => {
 
                 console.log('Item Config Successful for:',userContext)
-                getItemId()
+                updateWishList(res.data.id)
+
 
                 setInputItemName(inputItemName)
                 setInputURL(inputURL)
@@ -109,9 +128,11 @@ export default function ManageItem( userContext ) {
     }
 
     return (
-        <div>
-            <AccountHeader text='Manage Items' />
-            <div className="container">
+        <div id="itemPage">
+            <div id="title">
+                <AccountHeader text='Manage Items'/>
+            </div>
+            <div className="itemInfo">
                 <div className="entryBox">
                     <select onChange={handleWishlistChange} title="Select a Wishlist">
                         {/*{wishlists && wishlists.map(el =>*/}
