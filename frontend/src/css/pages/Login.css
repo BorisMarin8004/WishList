@@ -61,7 +61,7 @@ label {
     padding-right: 15px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="number"] {
     background: transparent;
     border: none;
     outline: none;

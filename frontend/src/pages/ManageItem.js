@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import axios from "axios";
 import {getItemModelConfig, getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
-import '../css/pages/Login.css'
+import '../css/pages/Home.css'
+import { useUsername, usePassword, useId } from "../customHooks/auth";
 import {unpackContext} from "../utils/contextUtils";
+import '../css/pages/ManageItem.css'
 
 /*  **Todo:
     add and remove item, to wishlist, user had access to item if its in their wishlist
@@ -14,12 +17,14 @@ import {unpackContext} from "../utils/contextUtils";
     containers: Item Name, price, url, picture url, wishlist
     change parameters to take context as javascript object
     userContext.<whatever you want> - may not work
+
+    **if user comes form wishlist, send back to wishlist - may be done using userContext.
 */
 
-
-export default function ManageItem(userContext) {
-
+export default function ManageItem({ userContext }) {
     console.log(userContext)
+    const context = userContext._currentValue
+    console.log("first instance of user context",userContext)
 
     const [ inputItemName, setInputItemName ] = useState("");
     const [ inputURL, setInputURL ] = useState("");
@@ -27,33 +32,34 @@ export default function ManageItem(userContext) {
     const [ inputDescription, setInputDescription ] = useState("");
 
     function handleAddItem() {
-        function setUserId(){
-            axios(getItemModelConfig("post", {}, {"name": inputItemName})).then(
-                res => {
-                    // console.log(userContext)
-                    setInputItemName(inputItemName)
-                    setInputURL(inputURL)
-                    setInputPrice(inputPrice)
-                    setInputDescription(inputDescription)
+        axios(getItemModelConfig("post", context.token, {}, {
+            "name": inputItemName,
+            "url":inputURL,
+            "price": inputPrice,
+            "description": inputDescription
+            })).then(
+            res => {
+                console.log(userContext)
 
-
-                    // setUsername(inputUsername)
-                    // setPassword(inputPassword)
-                }
-            ).catch(
-                err => {
-                    console.log(err)
-                }
-            )
-        }
-
+                setInputItemName(inputItemName)
+                setInputURL(inputURL)
+                setInputPrice(inputPrice)
+                setInputDescription(inputDescription)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
     }
 
 
     return(
-        <div>
-            <AccountHeader text='Manage Items' />
-            <div className="container">
+        <div id="itemPage">
+            <div id="title">
+                <AccountHeader text='Manage Items'/>
+            </div>
+            <div className="itemInfo">
                 <div className="entryBox">
                     <label>ItemName:</label>
                     <input
@@ -100,8 +106,7 @@ export default function ManageItem(userContext) {
                     {/*<Button text="Sign Up" color="green" onClick={handleSignUp}/>*/}
                 </div>
             </div>
-            <div className="background-cover">
-            </div>
         </div>
     )
 }
+
