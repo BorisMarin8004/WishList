@@ -29,10 +29,10 @@ export default function UserProfile({id, username, setUsername, password, setPas
 
     return (
         <div>
-            <h1>Your username: {username}</h1>
+            <h1>Your Username: {username}</h1>
             <div className="container">
                 <div className="entryBox">
-                    <label>New username:</label>
+                    <label>New Username:</label>
                     <input
                         type='text'
                         placeholder='Enter New Username'
@@ -41,7 +41,7 @@ export default function UserProfile({id, username, setUsername, password, setPas
                 </div>
                 <div className="pad"/>
                 <div className="entryBox">
-                    <label>New password:</label>
+                    <label>New Password:</label>
                     <input
                         type='password'
                         placeholder='Enter New Password'
@@ -50,7 +50,7 @@ export default function UserProfile({id, username, setUsername, password, setPas
                 </div>
                 <div className="pad"/>
                 <div className="buttons">
-                    <Button text="Update user" color="green" onClick={handleUserUpdate} />
+                    <Button text="Update User" color="green" onClick={handleUserUpdate} />
                 </div>
             </div>
         </div>

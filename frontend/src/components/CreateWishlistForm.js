@@ -23,16 +23,16 @@ const CreateWishlistForm = ({ userId, notifyOnWishlistCreate}) => {
         <div>
             <div className="container">
                 <div className="entryBox">
-                    <label>Wishlist name:</label>
+                    <label>Wishlist Name:</label>
                     <input
                         type='text'
-                        placeholder='Enter New Username'
+                        placeholder='Enter New Wishlist Name'
                         onChange={(e) => setWishlistName(e.target.value)}
                     />
                 </div>
                 <div className="pad"/>
                 <div className="buttons">
-                    <Button text="Create wishlist" color="green" onClick={handleWishlistCreate} />
+                    <Button text="Create Wishlist" color="green" onClick={handleWishlistCreate} />
                 </div>
             </div>
         </div>
