@@ -35,7 +35,7 @@ const getAuthConfig = (url, method, data = {}, token=null) => {
     let conf = getGenericConfig(url, method, data)
     conf.headers = {
         "Content-Type": "application/json",
-        "Authorization": `Token ${token == null ? localStorage.getItem('token') : token}`
+        "Authorization": `Token ${token == null ? JSON.parse(localStorage.getItem('token')) : token}`
     }
     return conf
 }

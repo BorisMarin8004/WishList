@@ -1,54 +1,47 @@
-import React, { Component } from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
 import NoImage from '../images/defaultImg.png'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
 
-const Item = ({itemid}) => {
-    const [item, setItem] = useState()
+const Item = ({ itemId, handleDelete}) => {
+    const [item, setItem] = useState({
+        id: null,
+        name: null,
+        description: null,
+        url: null
+    })
 
-    //Default values
-    let imghtml = NoImage;
-    let name = "Item Name";
-    let desc = "Item description";
-    let price = 0.00;
-
-    //Get values from database based on passed itemid
-    axios(getItemModelConfig("get", {"id": itemid})).then(
-        res => {
-            setItem(res.data)
-        }
-    ).catch(
-        err => {
-            console.log(err)
-        }
-    )
-
-    imghtml = item.imghtml;
-    name = item.name;
-    desc = item.desc;
-    price = item.price;
-
-    function handleDelete() {
-        console.log("Delete button clicked.");
-    }
-
+    useEffect(() => {
+        console.log("Item id", itemId)
+        axios(getItemModelConfig("get", {"id": itemId})).then(
+            res => {
+                console.log(res.data[0])
+                res.data[0] == null ? console.log("No such item") : setItem(res.data[0])
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }, [itemId])
 
     return (
         <div className="item-container">
-            <img className="item-img" src={imghtml} alt="not provided" />
-            <label>{name}</label>
-            <p>Description: {desc}</p>
-            <p>Price: ${price}</p>
+            <img className="item-img" src={item.url} alt="not provided" />
+            <label>{item.name}</label>
+            <p>Description: {item.description}</p>
+            <p>Price: ${item.price}</p>
             <div className="item-button">
-                <Button text="Delete" color="Red" width="100px" onClick={handleDelete}/>
+                <Button text="Delete" color="Red" width="100px" onClick={() => handleDelete(item.id)}/>
             </div>
         </div>
     )
 }
 
 Item.propTypes = {
-    itemid: PropTypes.number,
+    itemId: PropTypes.number,
 }
+
 export default Item
