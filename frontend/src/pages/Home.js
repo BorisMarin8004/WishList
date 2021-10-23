@@ -37,8 +37,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="background-cover-home">
-            </div>
         </div>
     )
 }

@@ -31,24 +31,28 @@ export default function UserProfile({ token, id, setId, username, setUsername, p
     return (
         <div>
             <h1>Your username: {username}</h1>
-            <div className="entryBox">
-                <label>New username:</label>
-                <input
-                    type='text'
-                    placeholder='Enter New Username'
-                    onChange={(e) => setNewUsername(e.target.value)}
-                />
-            </div>
-            <div className="entryBox">
-                <label>New password:</label>
-                <input
-                    type='password'
-                    placeholder='Enter New Password'
-                    onChange={(e) => setNewPassword(e.target.value)}
-                />
-            </div>
-            <div className="buttons">
-                <Button text="Update user" color="green" onClick={handleUserUpdate} />
+            <div className="container">
+                <div className="entryBox">
+                    <label>New username:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter New Username'
+                        onChange={(e) => setNewUsername(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="entryBox">
+                    <label>New password:</label>
+                    <input
+                        type='password'
+                        placeholder='Enter New Password'
+                        onChange={(e) => setNewPassword(e.target.value)}
+                    />
+                </div>
+                <div className="pad"></div>
+                <div className="buttons">
+                    <Button text="Update user" color="green" onClick={handleUserUpdate} />
+                </div>
             </div>
         </div>
     )
