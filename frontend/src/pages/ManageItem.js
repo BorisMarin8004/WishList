@@ -4,6 +4,7 @@ import {getItemModelConfig, getLoginConfig, getSignUpConfig, getUserModelConfig}
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
+import {unpackContext} from "../utils/contextUtils";
 
 /*  **Todo:
     add and remove item, to wishlist, user had access to item if its in their wishlist
@@ -16,7 +17,9 @@ import '../css/pages/Login.css'
 */
 
 
-export default function ManageItem({ userContext }) {
+export default function ManageItem(userContext) {
+
+    console.log(userContext)
 
     const [ inputItemName, setInputItemName ] = useState("");
     const [ inputURL, setInputURL ] = useState("");
@@ -24,8 +27,8 @@ export default function ManageItem({ userContext }) {
     const [ inputDescription, setInputDescription ] = useState("");
 
     function handleAddItem() {
-        function setUserId(token){
-            axios(getItemModelConfig("post", token, {}, {"name": inputItemName})).then(
+        function setUserId(){
+            axios(getItemModelConfig("post", {}, {"name": inputItemName})).then(
                 res => {
                     // console.log(userContext)
                     setInputItemName(inputItemName)

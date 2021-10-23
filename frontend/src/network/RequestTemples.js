@@ -31,25 +31,25 @@ const getSignUpConfig = (cred) => {
     return conf
 }
 
-const getAuthConfig = (url, method, token, data = {}) => {
+const getAuthConfig = (url, method, data = {}, token=null) => {
     let conf = getGenericConfig(url, method, data)
     conf.headers = {
         "Content-Type": "application/json",
-        "Authorization": `Token ${token}`
+        "Authorization": `Token ${token == null ? localStorage.getItem('token') : token}`
     }
     return conf
 }
 
-const getUserModelConfig = (method, token, query={}, data={}) => (
-    getAuthConfig(ROUTER.api.users + parseQuery(query), method, token, data)
+const getUserModelConfig = (method, query={}, data={}, token=null) => (
+    getAuthConfig(ROUTER.api.users + parseQuery(query), method, data, token)
 )
 
-const getItemModelConfig = (method, token, query={}, data={}) => (
-    getAuthConfig(ROUTER.api.items + parseQuery(query), method, token, data)
+const getItemModelConfig = (method, query={}, data={}, token=null) => (
+    getAuthConfig(ROUTER.api.items + parseQuery(query), method, data, token)
 )
 
-const getWishlistModelConfig = (method, token, query={}, data={}) => (
-    getAuthConfig(ROUTER.api.wish_lists + parseQuery(query), method, token, data)
+const getWishlistModelConfig = (method, query={}, data={}, token=null) => (
+    getAuthConfig(ROUTER.api.wish_lists + parseQuery(query), method, data, token)
 )
 
 export {

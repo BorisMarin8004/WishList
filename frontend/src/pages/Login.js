@@ -12,7 +12,7 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
 
     function handleLogin() {
         function setUserId(token){
-            axios(getUserModelConfig("get", token, {"username": inputUsername})).then(
+            axios(getUserModelConfig("get", {"username": inputUsername}, {}, token)).then(
                 res => {
                     setId(res.data[0].id)
                     setUsername(inputUsername)
