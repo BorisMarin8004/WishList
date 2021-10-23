@@ -4,6 +4,7 @@ body {
     display: flex;
     justify-content: center;
     vertical-align: middle;
+    text-align: center;
     margin: auto;
     font-family: Montserrat, serif;
 }
@@ -18,6 +19,7 @@ h1 {
 }
 
 h4 {
+    display: flex;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
@@ -48,16 +50,11 @@ h4 {
 }
 
 img {
-    width: 500px;
-    height: 700px;
+    width: 400px;
+    height: 600px;
 }
 
-.background-cover-home {
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+#homepage {
+    z-index: 2;
+    position: relative;
 }
