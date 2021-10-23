@@ -46,6 +46,7 @@
     "jsonwebtoken": "^8.5.1",
     "prettier": "^2.4.1",
     "prop-types": "^15.7.2",
+    "reactstrap": "^8.10.0",
     "underscore": "^1.13.1"
   }
 }
