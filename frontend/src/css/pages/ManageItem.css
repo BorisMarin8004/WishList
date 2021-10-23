@@ -28,3 +28,61 @@
     margin-left: auto;
     width: 60%;
 }
+
+select{
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    color: rgba(0,0,0,.5);
+}
+
+:root {
+    --select-border: #8EE167;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
+}
+
+.dropdown {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    display: flex;
+    grid-template-areas: "select";
+    justify-content: center;
+}
+
+.dropdown::after {
+    content: "";
+    width: 1.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-content: center;
+}
+
+select, .dropdown::after {
+    justify-self: end;
+}
+
+option {
+    color: #8EE167;
+}

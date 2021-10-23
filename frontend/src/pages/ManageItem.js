@@ -3,7 +3,8 @@ import axios from "axios";
 import { getItemModelConfig, getWishlistModelConfig } from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
-import '../css/pages/Login.css'
+import '../css/pages/ManageItem.css'
+import '../css/pages/Home.css'
 
 
 export default function ManageItem( { userId } ) {
@@ -59,14 +60,16 @@ export default function ManageItem( { userId } ) {
             </div>
             <div className="itemInfo">
                 <div className="entryBox">
-                    <select onChange={handleWishlistChange} title="Select a Wishlist">
-                        <option value=""> -- Select a Wishlist -- </option>
-                        {wishlists && wishlists.map((el, ) => <option key={el.id} value={ el.id}> {el.name} </option>)}
-                    </select>
+                    <div className="dropdown">
+                        <select onChange={handleWishlistChange} title="Select a Wishlist">
+                            <option value="" className="select-option"> -- Select a Wishlist -- </option>
+                            {wishlists && wishlists.map((el, ) => <option key={el.id} value={ el.id}> {el.name} </option>)}
+                        </select>
+                    </div>
                 </div>
                 <div className="pad"/>
                 <div className="entryBox">
-                    <label>ItemName:</label>
+                    <label>Item Name:</label>
                     <input
                         type='text'
                         placeholder='Enter the name of your item.'
@@ -76,7 +79,7 @@ export default function ManageItem( { userId } ) {
                 </div>
                 <div className="pad"/>
                 <div className="entryBox">
-                    <label>url:</label>
+                    <label>Image URL:</label>
                     <input
                         type='text'
                         placeholder='Enter URL'
@@ -86,7 +89,7 @@ export default function ManageItem( { userId } ) {
                 </div>
             <div className="pad"/>
             <div className="entryBox">
-                <label>price:</label>
+                <label>Price: $</label>
                 <input
                     type='number'
                     placeholder='Enter price'
@@ -96,7 +99,7 @@ export default function ManageItem( { userId } ) {
             </div>
             <div className="pad"/>
             <div className="entryBox">
-                <label>description:</label>
+                <label>Description:</label>
                 <input
                     type='text'
                     placeholder='Enter a description'
