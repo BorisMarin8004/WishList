@@ -11,7 +11,8 @@ export default function ManageWishlist(userContext) {
     const [wishlists, setWishlists] = useState()
 
     useEffect(() => {
-        axios(getWishlistModelConfig("get", {"user_id": context.id })).then(
+        console.log(context)
+        axios(getWishlistModelConfig("get", {"user_id": context.id }, {})).then(
             res => {
                 setWishlists(res.data)
             }
