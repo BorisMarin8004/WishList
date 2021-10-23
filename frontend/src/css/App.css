@@ -5,7 +5,7 @@ nav {
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 2;
+  z-index: 10;
   text-align: center;
 }
 
