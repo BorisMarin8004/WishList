@@ -4,15 +4,10 @@ import axios from "axios";
 import {getItemModelConfig} from "../network/RequestTemples";
 
 const Wishlist = ({ wishlistObj }) => {
-    const [items, setItems] = useState()
-    // useEffect(() => {
-    //     axios(getItemModelConfig("get", ))
-    // })
-
     return(
         <div>
             <h1>{wishlistObj.name}</h1>
-            {/*{items && items.map((el) => <Item key={el.id} item = {el}/>)}*/}
+            {wishlistObj.item_ids && wishlistObj.item_ids.map((el) => <Item key={el.id} item = { el.id }/>)}
         </div>
     )
 }
