@@ -4,9 +4,10 @@ import axios from "axios";
 import {getItemModelConfig, getLoginConfig, getSignUpConfig, getUserModelConfig} from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
-import '../css/pages/Login.css'
+import '../css/pages/Home.css'
 import { useUsername, usePassword, useId } from "../customHooks/auth";
 import {unpackContext} from "../utils/contextUtils";
+import '../css/pages/ManageItem.css'
 
 /*  **Todo:
     add and remove item, to wishlist, user had access to item if its in their wishlist
@@ -22,7 +23,7 @@ import {unpackContext} from "../utils/contextUtils";
 
 export default function ManageItem({ userContext }) {
     console.log(userContext)
-    const context = userContext.userContext._currentValue
+    const context = userContext._currentValue
     console.log("first instance of user context",userContext)
 
     const [ inputItemName, setInputItemName ] = useState("");
@@ -54,9 +55,11 @@ export default function ManageItem({ userContext }) {
 
 
     return(
-        <div>
-            <AccountHeader text='Manage Items' />
-            <div className="container">
+        <div id="itemPage">
+            <div id="title">
+                <AccountHeader text='Manage Items'/>
+            </div>
+            <div className="itemInfo">
                 <div className="entryBox">
                     <label>ItemName:</label>
                     <input
@@ -102,8 +105,6 @@ export default function ManageItem({ userContext }) {
                     {/*<div className="pad"/>*/}
                     {/*<Button text="Sign Up" color="green" onClick={handleSignUp}/>*/}
                 </div>
-            </div>
-            <div className="background-cover">
             </div>
         </div>
     )
