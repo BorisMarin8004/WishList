@@ -7,11 +7,28 @@ const Wishlist = ({ wishlistObj }) => {
 
     const [ wishlist, setWishlist ] = useState(wishlistObj)
 
+    function updateWishlist(){
+        console.log("updating wishlist")
+
+        axios(getItemModelConfig("get", {"id": wishlist.id})).then(
+            res => {
+                console.log("update wishlist", res)
+                setWishlist(res.data[0])
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }
+
     function handleItemDelete(itemId){
-        axios(getItemModelConfig("get", {"id": itemId})).then(
+        console.log("handle delete")
+        axios(getItemModelConfig("delete", {"id": itemId})).then(
             res => {
                 console.log("item deleted", res)
-                wishlist.item_ids = wishlist.item_ids.filter(item => item !== itemId)
+                // setItemIds(itemIds.filter(item => item !== itemId))
+                updateWishlist()
             }
         ).catch(
             err => {
@@ -21,12 +38,12 @@ const Wishlist = ({ wishlistObj }) => {
     }
 
     useEffect(() => {
-        console.log(wishlist)
+        updateWishlist()
     })
 
     return(
         <div>
-            <h1>{wishlist.name}</h1>
+            {wishlist && <h1>{wishlist.name}</h1>}
             {wishlist && wishlist.item_ids.map((el) => (
                 <Item key={el} itemId={el} handleDelete={handleItemDelete}/>
             ))}

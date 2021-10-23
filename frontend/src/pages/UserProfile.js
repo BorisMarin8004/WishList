@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import axios from "axios";
 import { getUserModelConfig } from "../network/RequestTemples";
 
-export default function UserProfile({ token, id, username, setUsername, password, setPassword }) {
+export default function UserProfile({id, username, setUsername, password, setPassword }) {
     const [ newUsername, setNewUsername ] = useState();
     const [ newPassword, setNewPassword ] = useState();
 
@@ -13,7 +13,7 @@ export default function UserProfile({ token, id, username, setUsername, password
     function handleUserUpdate(){
         setUsername(newUsername)
         setPassword(newPassword)
-        axios(getUserModelConfig("put", token, {} , {
+        axios(getUserModelConfig("put", {} , {
             "id": id,
             "username": newUsername,
             "password": newPassword
@@ -39,7 +39,7 @@ export default function UserProfile({ token, id, username, setUsername, password
                         onChange={(e) => setNewUsername(e.target.value)}
                     />
                 </div>
-                <div className="pad"></div>
+                <div className="pad"/>
                 <div className="entryBox">
                     <label>New password:</label>
                     <input
@@ -48,7 +48,7 @@ export default function UserProfile({ token, id, username, setUsername, password
                         onChange={(e) => setNewPassword(e.target.value)}
                     />
                 </div>
-                <div className="pad"></div>
+                <div className="pad"/>
                 <div className="buttons">
                     <Button text="Update user" color="green" onClick={handleUserUpdate} />
                 </div>

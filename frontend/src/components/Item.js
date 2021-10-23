@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
-import NoImage from '../images/defaultImg.png'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
 
