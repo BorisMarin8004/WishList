@@ -13,7 +13,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class WishListSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishList
-        fields = ['id', 'user_id', 'item_ids']
+        fields = ['id', 'user_id', 'item_ids', 'name']
 
     def to_representation(self, instance):
         ret = super().to_representation(instance)
