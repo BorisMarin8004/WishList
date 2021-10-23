@@ -4,7 +4,7 @@ import Button from './Button'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
 
-const Item = ({ itemId, handleDelete}) => {
+const Item = ({ itemId, notifyOnItemDelete }) => {
     const [item, setItem] = useState({
         id: null,
         name: null,
@@ -25,6 +25,20 @@ const Item = ({ itemId, handleDelete}) => {
             }
         )
     }, [itemId])
+
+    function handleDelete(itemId){
+        console.log("handle delete")
+        axios(getItemModelConfig("delete", {}, {"id": itemId})).then(
+            res => {
+                console.log("item deleted", res)
+                notifyOnItemDelete()
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }
 
     return (
         <div className="item-container">

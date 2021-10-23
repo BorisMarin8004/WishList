@@ -46,7 +46,7 @@ class ItemsViewTest(TestCase, DAVTestTemplate):
 class WishListViewTest(TestCase, DAVTestTemplate):
     add_data = {
         "user_id": 21,
-        "item_ids": "4,6"
+        "name": "testWishListName"
     }
     delete_data = add_data
     url_name = "wish_list"
