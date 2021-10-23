@@ -65,7 +65,7 @@ export default function App() {
                         <Home />
                     </Route>
                     <Route path="/item">
-                        <ManageItem userContext = { makeContext(localStorage) } />
+                        <ManageItem userId = { id } />
                     </Route>
                     <Route path="/user-profile">
                         <UserProfile
@@ -80,7 +80,7 @@ export default function App() {
                         />
                     </Route>
                     <Route path="/wishlist">
-                        <ManageWishlist userContext = { makeContext(localStorage) } />
+                        <ManageWishlist userId = { id } />
                     </Route>
                 </Switch>
             </div>

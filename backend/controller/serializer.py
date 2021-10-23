@@ -13,15 +13,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class WishListSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishList
-        # fields = ['id', 'user_id', 'item_ids', 'name']
         fields = ['id', 'user_id', 'name']
-
-    # def to_representation(self, instance):
-    #     ret = super().to_representation(instance)
-    #     is_list_view = isinstance(instance.item_ids, str)
-    #     extra_ret = {'item_ids': list(map(int, instance.item_ids.split(",")))} if is_list_view else {'item_ids': instance.item_ids}
-    #     ret.update(extra_ret)
-    #     return ret
 
 
 class UserSerializer(serializers.ModelSerializer):

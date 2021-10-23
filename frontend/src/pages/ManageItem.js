@@ -4,23 +4,9 @@ import { getItemModelConfig, getWishlistModelConfig } from "../network/RequestTe
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
-import {unpackContext} from "../utils/contextUtils";
-
-/*  **Todo:
-    add and remove item, to wishlist, user had access to item if its in their wishlist
-    create empty wishlist and add the item
-    add item will just add item to wishlist and stay on the page.
-    have access to all wishlists.
-    containers: Item Name, price, url, picture url, wishlist
-    change parameters to take context as javascript object
-    userContext.<whatever you want> - may not work
-
-    **if user comes form wishlist, send back to wishlist - may be done using userContext.
-*/
 
 
-export default function ManageItem( userContext ) {
-    const [context, setContext] = useState(unpackContext(userContext))
+export default function ManageItem( { userId } ) {
     const [ wishlists, setWishlists ] = useState("")
     const [ wishListId, setWishListId ] = useState("");
 
@@ -29,11 +15,9 @@ export default function ManageItem( userContext ) {
     const [ inputPrice, setInputPrice ] = useState("");
     const [ inputDescription, setInputDescription ] = useState("");
 
-
-
     useEffect(() => {
-        console.log(context)
-        axios(getWishlistModelConfig("get", {"user_id": context.id })).then(
+        console.log("User ID: ", userId)
+        axios(getWishlistModelConfig("get", {"user_id": userId })).then(
             res => {
                 console.log('user wishlists:', res.data)
                 setWishlists(res.data)
@@ -43,51 +27,19 @@ export default function ManageItem( userContext ) {
                 console.log(err)
             }
         )
-    }, [context])
-
-    function updateWishList(newItemId){
-        function sendUpdateRequest(item_ids) {
-            console.log("New item ids", item_ids)
-            axios(getWishlistModelConfig("put", {},{
-                "id": wishListId,
-                "user_id": context.id,
-                "item_ids": item_ids.join(",")
-            })).then(
-                res => {
-                    console.log(res)
-                }
-            ).catch(
-                err => {
-                    console.log(err)
-                }
-            )
-        }
-        axios(getWishlistModelConfig("get", {"id": wishListId})).then(
-            res => {
-                let item_ids = res.data[0].item_ids
-                console.log("old: ", item_ids)
-                console.log("addition: ", newItemId)
-                item_ids.push(newItemId)
-                console.log('new:', item_ids)
-                sendUpdateRequest(item_ids)
-            }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
-    }
+    }, [userId])
 
     function handleAddItem() {
         axios(getItemModelConfig("post",{}, {
             "name": inputItemName,
+            "wish_list_id": wishListId,
             "url": inputURL,
             "price": inputPrice,
             "description": inputDescription
         })).then(
             res => {
-                console.log('Item Config Successful for:',userContext)
-                updateWishList(res.data.id)
+                console.log('Item Config Successful for:', res.data)
+                alert("Item added successfully")
             }
         ).catch(
             err => {

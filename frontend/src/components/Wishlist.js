@@ -4,8 +4,8 @@ import axios from "axios";
 import {getItemModelConfig, getWishlistModelConfig} from "../network/RequestTemples";
 
 const Wishlist = ({ wishlistObj }) => {
-
     const [ wishlist, setWishlist ] = useState(wishlistObj)
+    const [ items, setItems ] = useState()
 
     function updateWishlist(){
         axios(getWishlistModelConfig("get", {"id": wishlist.id})).then(
@@ -20,15 +20,24 @@ const Wishlist = ({ wishlistObj }) => {
         )
     }
 
-    // useEffect(() => {
-    //     updateWishlist()
-    // })
+    useEffect(() => {
+        axios(getItemModelConfig("get", {"wish_list_id": wishlist.id})).then(
+            res => {
+                console.log(res.data)
+                setItems(res.data)
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }, [wishlist])
 
     return(
         <div>
             {wishlist && <h1>{wishlist.name}</h1>}
-            {wishlist && wishlist.item_ids.map((el) => (
-                <Item key={el} itemId={el} notifyOnItemDelete={updateWishlist}/>
+            {items && items.map((el) => (
+                <Item key={el.id} item={el} notifyOnItemDelete={updateWishlist}/>
             ))}
         </div>
     )

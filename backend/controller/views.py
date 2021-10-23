@@ -23,14 +23,6 @@ class ItemsView(DataAccessView):
     queryset = Item.objects.all()
     model = Item
 
-    def delete_models(self, *args, **kwargs):
-        delete_targets = self.model.objects.filter(**self.request.data)
-        print(delete_targets)
-        data = self.filter_models(**self.request.data)
-        print(data)
-        return get_response(data, status=200)
-        # return super().delete_models(self, args, kwargs)
-
 
 class WishListView(DataAccessView):
     serializer_class = WishListSerializer

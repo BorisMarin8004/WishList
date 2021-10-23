@@ -1,0 +1,42 @@
+import Button from "./Button";
+import {useState} from "react";
+import axios from "axios";
+import {getWishlistModelConfig} from "../network/RequestTemples";
+
+const CreateWishlistForm = ({ userId, notifyOnWishlistCreate}) => {
+    const [wishlistName, setWishlistName] = useState()
+
+    function handleWishlistCreate(){
+        axios(getWishlistModelConfig("post", {}, {"user_id": userId, "name": wishlistName})).then(
+            res => {
+                console.log("created new wishlist", res.data)
+                notifyOnWishlistCreate()
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
+    }
+
+    return (
+        <div>
+            <div className="container">
+                <div className="entryBox">
+                    <label>Wishlist name:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter New Username'
+                        onChange={(e) => setWishlistName(e.target.value)}
+                    />
+                </div>
+                <div className="pad"/>
+                <div className="buttons">
+                    <Button text="Create wishlist" color="green" onClick={handleWishlistCreate} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default CreateWishlistForm

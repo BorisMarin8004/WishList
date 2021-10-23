@@ -4,28 +4,7 @@ import Button from './Button'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
 
-const Item = ({ itemId, notifyOnItemDelete }) => {
-    const [item, setItem] = useState({
-        id: null,
-        name: null,
-        description: null,
-        url: null
-    })
-
-    useEffect(() => {
-        console.log("Item id", itemId)
-        axios(getItemModelConfig("get", {"id": itemId})).then(
-            res => {
-                console.log(res.data[0])
-                res.data[0] == null ? console.log("No such item") : setItem(res.data[0])
-            }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
-    }, [itemId])
-
+const Item = ({ item, notifyOnItemDelete }) => {
     function handleDelete(itemId){
         console.log("handle delete")
         axios(getItemModelConfig("delete", {}, {"id": itemId})).then(
@@ -51,10 +30,6 @@ const Item = ({ itemId, notifyOnItemDelete }) => {
             </div>
         </div>
     )
-}
-
-Item.propTypes = {
-    itemId: PropTypes.number,
 }
 
 export default Item
