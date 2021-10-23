@@ -1,18 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import PropTypes from 'prop-types';
 import axios from "axios";
-import {
-    getItemModelConfig,
-    getLoginConfig,
-    getSignUpConfig,
-    getUserModelConfig,
-    getWishlistModelConfig
-} from "../network/RequestTemples";
+import { getItemModelConfig, getWishlistModelConfig } from "../network/RequestTemples";
 import Button from "../components/Button";
 import AccountHeader from '../components/AccountHeader'
 import '../css/pages/Login.css'
-import { useUsername, usePassword, useId } from "../customHooks/auth";
 import {unpackContext} from "../utils/contextUtils";
 
 /*  **Todo:
@@ -30,10 +21,9 @@ import {unpackContext} from "../utils/contextUtils";
 
 export default function ManageItem( userContext ) {
     const [context, setContext] = useState(unpackContext(userContext))
-    console.log("user context token in ManageItems",context)
-    const [wishlists, setWishlists] = useState("")
-
+    const [ wishlists, setWishlists ] = useState("")
     const [ wishListId, setWishListId ] = useState("");
+
     const [ inputItemName, setInputItemName ] = useState("");
     const [ inputURL, setInputURL ] = useState("");
     const [ inputPrice, setInputPrice ] = useState("");
@@ -55,67 +45,49 @@ export default function ManageItem( userContext ) {
         )
     }, [context])
 
-    function getItemIds() {
+    function updateWishList(newItemId){
+        function sendUpdateRequest(item_ids) {
+            console.log("New item ids", item_ids)
+            axios(getWishlistModelConfig("put", {},{
+                "id": wishListId,
+                "user_id": context.id,
+                "item_ids": item_ids.join(",")
+            })).then(
+                res => {
+                    console.log(res)
+                }
+            ).catch(
+                err => {
+                    console.log(err)
+                }
+            )
+        }
         axios(getWishlistModelConfig("get", {"id": wishListId})).then(
             res => {
-                console.log('wishlist to update:', res.data)
-                updateWishList(res.data[0].item_ids)
-
+                let item_ids = res.data[0].item_ids
+                console.log("old: ", item_ids)
+                console.log("addition: ", newItemId)
+                item_ids.push(newItemId)
+                console.log('new:', item_ids)
+                sendUpdateRequest(item_ids)
             }
         ).catch(
             err => {
                 console.log(err)
             }
         )
-    }
-    function updateWishList(){
-        getItemIds()
-        axios(getWishlistModelConfig("put", {},{"item_ids": item_ids})).then(
-            res => {
-                console.log(res)
-            }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
-    }
-
-
-
-    function getItemId( ) {
-        axios(getItemModelConfig("get", {'name': inputItemName})).then(
-            res => {
-                console.log(res.data[0].id)
-                updateWishList(res.data[0].id)
-            }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
-
     }
 
     function handleAddItem() {
-
-
         axios(getItemModelConfig("post",{}, {
             "name": inputItemName,
             "url": inputURL,
             "price": inputPrice,
             "description": inputDescription
-            })).then(
+        })).then(
             res => {
-
                 console.log('Item Config Successful for:',userContext)
                 updateWishList(res.data.id)
-
-
-                setInputItemName(inputItemName)
-                setInputURL(inputURL)
-                setInputPrice(inputPrice)
-                setInputDescription(inputDescription)
             }
         ).catch(
             err => {
@@ -123,6 +95,7 @@ export default function ManageItem( userContext ) {
             }
         )
     }
+
     const handleWishlistChange = (e) => {
         setWishListId(e.target.value)
     }
@@ -135,24 +108,9 @@ export default function ManageItem( userContext ) {
             <div className="itemInfo">
                 <div className="entryBox">
                     <select onChange={handleWishlistChange} title="Select a Wishlist">
-                        {/*{wishlists && wishlists.map(el =>*/}
-                        {/*    <option key={el.id} value={el.id}>{el.name}</option>*/}
-                        {/*)};*/}
-
                         <option value=""> -- Select a Wishlist -- </option>
-                            {wishlists && wishlists.map((el, ) => <option value={el.id}> {el.name} </option>)}
-                        {/*{console.log(wishlists)}*/}
-                        {/*key={fruit.label} value={fruit.value}>{fruit.label}*/}
+                        {wishlists && wishlists.map((el, ) => <option key={el.id} value={ el.id}> {el.name} </option>)}
                     </select>
-                    {/*<DropdownMenu onChange= {(e) => setWishListId(e.target.value)}>*/}
-                    {/*{*/}
-                    {/*    wishlists && wishlists.map((el) =>*/}
-                    {/*    <Dropdown.Item*/}
-                    {/*        key={el.id}>{el.name}*/}
-                    {/*    </Dropdown.Item>*/}
-                    {/*    )*/}
-                    {/*}*/}
-                    {/*</DropdownMenu>*/}
                 </div>
                 <div className="pad"/>
                 <div className="entryBox">
