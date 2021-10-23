@@ -43,10 +43,10 @@ export default function ManageItem( userContext ) {
 
     useEffect(() => {
         console.log(context)
-        axios(getWishlistModelConfig("get", context.token, {"user_id": context.id })).then(
+        axios(getWishlistModelConfig("get", {"user_id": context.id })).then(
             res => {
                 console.log('user wishlists:', res.data)
-                setWishlists(res.data.id)
+                setWishlists(res.data)
             }
         ).catch(
             err => {
@@ -58,7 +58,7 @@ export default function ManageItem( userContext ) {
     function handleAddItem() {
 
         function updateWishList( item ){
-            axios(getWishlistModelConfig("put", context.token, {"id":wishListId}, {} )).then(
+            axios(getWishlistModelConfig("put", context.token, {"id":wishListId} )).then(
                 res => {
                     console.log(res.data)
                 }
@@ -114,12 +114,12 @@ export default function ManageItem( userContext ) {
             <div className="container">
                 <div className="entryBox">
                     <select onChange={handleWishlistChange} title="Select a Wishlist">
-                        {wishlists && wishlists.map(el =>
-                            <option key={el.id} value={el.id}>{el.name}</option>
-                        )};
+                        {/*{wishlists && wishlists.map(el =>*/}
+                        {/*    <option key={el.id} value={el.id}>{el.name}</option>*/}
+                        {/*)};*/}
 
-                        {/*<option value=""> -- Select a Wishlist -- </option>*/}
-                        {/*    {wishlists && wishlists.map((el, ) => <option key={el.id} value={el.id}>{el.name}</option>)}*/}
+                        <option value=""> -- Select a Wishlist -- </option>
+                            {wishlists && wishlists.map((el, ) => <option value={el.id}> {el.name} </option>)}
                         {/*{console.log(wishlists)}*/}
                         {/*key={fruit.label} value={fruit.value}>{fruit.label}*/}
                     </select>
