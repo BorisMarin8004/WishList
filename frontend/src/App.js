@@ -7,7 +7,8 @@ import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
 import {useId, usePassword, useToken, useUsername} from "./customHooks/auth";
 import Button from "./components/Button";
-import React, {useState} from "react";
+import {makeContext} from "./utils/contextUtils";
+import React from "react";
 
 export default function App() {
     const { id, setId } = useId();
@@ -64,7 +65,7 @@ export default function App() {
                         <Home />
                     </Route>
                     <Route path="/item">
-                        <ManageItem userContext = { React.createContext({ ...localStorage }) } />
+                        <ManageItem userContext = { makeContext(localStorage) } />
                     </Route>
                     <Route path="/user-profile">
                         <UserProfile
@@ -79,7 +80,7 @@ export default function App() {
                         />
                     </Route>
                     <Route path="/wishlist">
-                        <ManageWishlist userContext = { React.createContext({ ...localStorage }) } />
+                        <ManageWishlist userContext = { makeContext(localStorage) } />
                     </Route>
                 </Switch>
             </div>

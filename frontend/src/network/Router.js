@@ -1,6 +1,6 @@
 
 const SWITCH = Object.freeze({
-    BASE: "http://localhost:8000",
+    BASE: "http://0.0.0.0:8000",
     API: "api"
 })
 
