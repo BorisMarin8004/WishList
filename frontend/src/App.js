@@ -7,7 +7,8 @@ import ManageItem from "./pages/ManageItem"
 import ManageWishlist from "./pages/ManageWishlist"
 import {useId, usePassword, useToken, useUsername} from "./customHooks/auth";
 import Button from "./components/Button";
-import React, {useState} from "react";
+import {makeContext} from "./utils/contextUtils";
+import React from "react";
 
 export default function App() {
     const { id, setId } = useId();
@@ -31,26 +32,26 @@ export default function App() {
                     <ul>
                         <li>
                             <Link to="/home">
-                                <Button text="Home" color="green" width="300px" onClick={() => console.log("Home clicked")}/>
+                                <Button text="Home" color="green" width="200px" onClick={() => console.log("Home clicked")}/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/item">
-                                <Button text="Items" color="green" width="300px" onClick={() => console.log("Items clicked")}/>
+                                <Button text="Items" color="green" width="200px" onClick={() => console.log("Items clicked")}/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/user-profile">
-                                <Button text="View Profile" color="green" width="300px" onClick={() => console.log("View Profile clicked")}/>
+                                <Button text="View Profile" color="green" width="200px" onClick={() => console.log("View Profile clicked")}/>
                             </Link>
                         </li>
                         <li>
                             <Link to="/wishlist">
-                                <Button text="Wishlists" color="green" width="300px" onClick={() => console.log("Wishlists clicked")}/>
+                                <Button text="Wishlists" color="green" width="200px" onClick={() => console.log("Wishlists clicked")}/>
                             </Link>
                         </li>
                         <li>
-                            <Button text="Log Out" color="green" width="300px" onClick={() => {
+                            <Button text="Log Out" color="green" width="200px" onClick={() => {
                                 console.log("Dropping token")
                                 setToken()
                                 localStorage.clear()
@@ -64,7 +65,7 @@ export default function App() {
                         <Home />
                     </Route>
                     <Route path="/item">
-                        <ManageItem userContext = { React.createContext({ ...localStorage }) } />
+                        <ManageItem userContext = { makeContext(localStorage) } />
                     </Route>
                     <Route path="/user-profile">
                         <UserProfile
@@ -79,7 +80,7 @@ export default function App() {
                         />
                     </Route>
                     <Route path="/wishlist">
-                        <ManageWishlist userContext = { React.createContext({ ...localStorage }) } />
+                        <ManageWishlist userContext = { makeContext(localStorage) } />
                     </Route>
                 </Switch>
             </div>

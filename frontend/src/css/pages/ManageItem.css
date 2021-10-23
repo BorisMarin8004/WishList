@@ -1,0 +1,30 @@
+#itemPage {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.itemInfo {
+    text-align: center;
+    background-color: rgba(255, 175, 131, 0.33);
+    border-radius: 44px;
+    padding: 40px;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+}
+
+#title {
+    text-align: center;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+}
