@@ -8,12 +8,13 @@ const TEST_PARAMS = Object.freeze({
         username: "admin",
         password: "admin"
     },
+    // Page Element Identifier
     PEI: {
         homeElement: "Have you been nice this year?",
-        itemsElement: "Empty ManageItem",
-        viewProfileElement: "Empty UserProfile",
-        wishlistElement: "Empty ManageWishlist",
-        logoutElement: "Please Log In"
+        itemsElement: "Manage Items",
+        viewProfileElement: "Update user",
+        wishlistElement: "My Wishlists",
+        logoutElement: "Log-In"
     }
 })
 
@@ -45,7 +46,7 @@ test("LocalStorage", () => {
 
 test("Login", () => {
     render(<App />);
-    const elementBeforeLogin = screen.getByText("Please Log In");
+    const elementBeforeLogin = screen.getByText(TEST_PARAMS.PEI.logoutElement);
     expect(elementBeforeLogin).toBeInTheDocument();
     localStorage.setItem('token', JSON.stringify(getTokenRequest()))
     render(<App />);
