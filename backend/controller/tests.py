@@ -22,7 +22,8 @@ class LoginViewTest(TestCase):
 
 class ItemsViewTest(TestCase, DAVTestTemplate):
     add_data = {
-        "name": "AutoTestItem"
+        "name": "AutoTestItem",
+        "wish_list_id": 1
     }
     delete_data = add_data
     url_name = "item"
@@ -39,6 +40,9 @@ class ItemsViewTest(TestCase, DAVTestTemplate):
     def test_add_items(self):
         super()._test_add(self)
 
+    def test_update_items(self):
+        super()._test_update(self)
+
     def test_delete_items(self):
         super()._test_delete(self)
 
@@ -46,7 +50,7 @@ class ItemsViewTest(TestCase, DAVTestTemplate):
 class WishListViewTest(TestCase, DAVTestTemplate):
     add_data = {
         "user_id": 21,
-        "item_ids": "4,6"
+        "name": "testWishListName"
     }
     delete_data = add_data
     url_name = "wish_list"
@@ -62,6 +66,9 @@ class WishListViewTest(TestCase, DAVTestTemplate):
 
     def test_add_wish_list(self):
         super()._test_add(self)
+
+    def test_update_wish_list(self):
+        super()._test_update(self)
 
     def test_delete_wish_list(self):
         super()._test_delete(self)
@@ -88,6 +95,9 @@ class UserViewTest(TestCase, DAVTestTemplate):
 
     def test_add_user(self):
         super()._test_add(self)
+
+    def test_update_user(self):
+        super()._test_update(self)
 
     def test_delete_user(self):
         super()._test_delete(self)

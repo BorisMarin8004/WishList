@@ -1,55 +1,35 @@
-import React, { Component } from 'react'
-import {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import Button from './Button'
-import NoImage from '../images/defaultImg.png'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
 
-const Item = ({itemid}) => {
-    const [item, setItem] = useState()
-
-    //Default values
-    let imghtml = NoImage;
-    let name = "Item Name";
-    let desc = "Item description";
-    let price = 0.00;
-
-    //Get values from database based on passed itemid
-    axios(getItemModelConfig("get", {"id": itemid})).then(
-        res => {
-            setItem(res.data)
-        }
-    ).catch(
-        err => {
-            console.log(err)
-        }
-    )
-
-    imghtml = item.imghtml;
-    name = item.name;
-    desc = item.desc;
-    price = item.price;
-
-    function handleDelete() {
-        console.log("Delete button clicked.");
+const Item = ({ item, notifyOnItemDelete }) => {
+    function handleDelete(itemId){
+        console.log("handle delete")
+        axios(getItemModelConfig("delete", {}, {"id": itemId})).then(
+            res => {
+                console.log("item deleted", res)
+                notifyOnItemDelete()
+            }
+        ).catch(
+            err => {
+                console.log(err)
+            }
+        )
     }
-
 
     return (
         <div className="item-container">
-            <img className="item-img" src={imghtml} alt="not provided" />
-            <label>{name}</label>
-            <p>Description: {desc}</p>
-            <p>Price: ${price}</p>
+            <img className="item-img" src={item.url} alt="not provided" />
+            <label>{item.name}</label>
+            <p>Description: {item.description}</p>
+            <p>Price: ${item.price}</p>
             <div className="item-button">
-                <Button text="Delete" color="Red" width="100px" onClick={handleDelete}/>
+                <Button text="Delete" color="Red" width="100px" onClick={() => handleDelete(item.id)}/>
             </div>
         </div>
     )
 }
 
-Item.propTypes = {
-    itemid: PropTypes.number,
-}
 export default Item

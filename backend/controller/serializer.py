@@ -7,20 +7,13 @@ from .models import *
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id', 'price', 'name', 'url', 'description']
+        fields = ['id', 'wish_list_id', 'price', 'name', 'url', 'description']
 
 
 class WishListSerializer(serializers.ModelSerializer):
     class Meta:
         model = WishList
-        fields = ['id', 'user_id', 'item_ids', 'name']
-
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        is_list_view = isinstance(instance.item_ids, str)
-        extra_ret = {'item_ids': list(map(int, instance.item_ids.split(",")))} if is_list_view else {'item_ids': instance.item_ids}
-        ret.update(extra_ret)
-        return ret
+        fields = ['id', 'user_id', 'name']
 
 
 class UserSerializer(serializers.ModelSerializer):

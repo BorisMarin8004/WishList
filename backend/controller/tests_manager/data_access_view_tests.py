@@ -9,6 +9,8 @@ from .test_utils import *
 class DAVTestTemplate:
     url_name = None
     add_data = None
+    id = None
+    update_data = None
     delete_data = None
     field_compare = None
     client_class = APIClient
@@ -29,6 +31,11 @@ class DAVTestTemplate:
         cls.auth_header = {"HTTP_AUTHORIZATION": "Token {}".format(cls.token)}
 
     @classmethod
+    def setUpdateData(cls, test_instance):
+        cls.update_data = cls.add_data
+        cls.update_data["id"] = decode_content(cls.__get_response(test_instance).content)[0]["id"]
+
+    @classmethod
     def __get_response(cls, test_instance):
         return test_instance.client.get(
             reverse(cls.url_name),
@@ -42,6 +49,16 @@ class DAVTestTemplate:
             reverse(cls.url_name),
             format=cls.data_format,
             data=cls.add_data,
+            **cls.auth_header
+        )
+
+    @classmethod
+    def __update_response(cls, test_instance):
+        cls.setUpdateData(test_instance)
+        return test_instance.client.put(
+            reverse(cls.url_name),
+            format=cls.data_format,
+            data=cls.update_data,
             **cls.auth_header
         )
 
@@ -64,6 +81,12 @@ class DAVTestTemplate:
     @classmethod
     def _test_add(cls, test_instance):
         response = cls.__add_response(test_instance)
+        test_instance.assertEqual(response.status_code, 200)
+        test_instance.assertEqual(decode_content(response.content)[cls.field_compare], cls.add_data[cls.field_compare])
+
+    @classmethod
+    def _test_update(cls, test_instance):
+        response = cls.__update_response(test_instance)
         test_instance.assertEqual(response.status_code, 200)
         test_instance.assertEqual(decode_content(response.content)[cls.field_compare], cls.add_data[cls.field_compare])
 

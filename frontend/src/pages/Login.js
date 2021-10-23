@@ -11,8 +11,8 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
     const [ inputPassword, setInputPassword ] = useState("");
 
     function handleLogin() {
-        function setUserId(token){
-            axios(getUserModelConfig("get", {"username": inputUsername}, {}, token)).then(
+        function setUserId(){
+            axios(getUserModelConfig("get", {"username": inputUsername}, {})).then(
                 res => {
                     setId(res.data[0].id)
                     setUsername(inputUsername)
@@ -28,7 +28,7 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
         axios(getLoginConfig({"username": inputUsername, "password": inputPassword})).then(
             res => {
                 setToken(res.data.token)
-                setUserId(res.data.token)
+                setUserId()
             }
         ).catch(
             err => {
