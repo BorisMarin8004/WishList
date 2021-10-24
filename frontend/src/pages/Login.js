@@ -51,7 +51,7 @@ export default function Login({ setId, setToken, setUsername, setPassword }) {
 
     return(
         <div id="loginPage">
-            <div id="title">
+            <div id="title-login">
                 <AccountHeader text='Log-In' />
             </div>
             

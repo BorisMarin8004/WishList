@@ -81,7 +81,11 @@ input[type="text"], input[type="password"], input[type="number"] {
     align-items: center;
 }
 
-#title {
+#title-login {
     position: relative;
     z-index: 2;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
