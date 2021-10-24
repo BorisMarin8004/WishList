@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import Button from './Button'
 import axios from 'axios'
 import { getItemModelConfig } from '../network/RequestTemples'
@@ -15,6 +14,7 @@ const Item = ({ item, notifyOnItemDelete }) => {
         ).catch(
             err => {
                 console.log(err)
+                alert("Item deleted")
             }
         )
     }

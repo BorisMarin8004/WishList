@@ -45,6 +45,7 @@ export default function ManageItem( { userId } ) {
         ).catch(
             err => {
                 console.log(err)
+                alert("Could not create item")
             }
         )
     }

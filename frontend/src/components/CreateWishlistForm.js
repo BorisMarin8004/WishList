@@ -10,6 +10,7 @@ const CreateWishlistForm = ({ userId, notifyOnWishlistCreate}) => {
         axios(getWishlistModelConfig("post", {}, {"user_id": userId, "name": wishlistName})).then(
             res => {
                 console.log("created new wishlist", res.data)
+                alert("Wishlist created")
                 notifyOnWishlistCreate()
             }
         ).catch(

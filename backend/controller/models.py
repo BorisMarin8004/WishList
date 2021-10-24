@@ -17,6 +17,6 @@ class Item(models.Model):
 
     name = models.CharField(max_length=20, db_column='name')
     wish_list_id = models.ForeignKey(WishList, on_delete=models.CASCADE, db_column='wish_list_id')
-    url = models.CharField(default="No URL", max_length=20, db_column='url')
+    url = models.CharField(default="No URL", max_length=2000, db_column='url')
     price = models.DecimalField(default=0, decimal_places=2, max_digits=1000, db_column='price')
     description = models.TextField(default="Empty", db_column='description')
