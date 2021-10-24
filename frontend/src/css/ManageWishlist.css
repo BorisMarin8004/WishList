@@ -39,6 +39,7 @@ h4 {
     background-color: rgba(255, 175, 131, 0.33);
     border-radius: 30px;
     padding: 40px;
+    max-width: 25%;
 }
 
 .item-img {
@@ -47,16 +48,24 @@ h4 {
     float: right;
 }
 
-.background-cover-home {
-    background-color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-}
-
 .item-button {
     float: right;
+}
+
+.wish_lists {
+    z-index: 2;
+    position: relative;
+}
+
+.newWishlist {
+    background-color: rgb(253, 226, 212);
+    padding: 40px;
+    box-shadow: 0 4px 0 4px #FFFFFF;
+    border-radius: 59px;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    z-index: 2;
 }

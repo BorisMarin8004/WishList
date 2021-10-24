@@ -36,9 +36,11 @@ const Wishlist = ({ wishlistObj }) => {
     return(
         <div>
             {wishlist && <h1>{wishlist.name}</h1>}
-            {items && items.map((el) => (
-                <Item key={el.id} item={el} notifyOnItemDelete={updateWishlist}/>
-            ))}
+            <div className="items">
+                {items && items.map((el) => (
+                    <Item key={el.id} item={el} notifyOnItemDelete={updateWishlist}/>
+                ))}
+            </div>
         </div>
     )
 }

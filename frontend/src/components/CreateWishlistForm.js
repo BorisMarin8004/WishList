@@ -21,7 +21,7 @@ const CreateWishlistForm = ({ userId, notifyOnWishlistCreate}) => {
 
     return (
         <div>
-            <div className="container">
+            <div className="newWishlist">
                 <div className="entryBox">
                     <label>Wishlist Name:</label>
                     <input
